@@ -8,20 +8,50 @@
  * 다음 줄에는 정수 y가 주어진다. (−1000 ≤ y ≤ 1000; y ≠ 0)
  *
  * 출력 : 점 (x, y)의 사분면 번호(1, 2, 3, 4 중 하나)를 출력
+ * 
+ * 문제 풀이 : 
+ * - 이 문제부터 fs모듈에 런타임 에러가 나서 통하지 않게됨.
+ *   - readline모듈을 써야 한다.
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let input = [];
+
+rl.on("line", function (line) {
+  input.push(parseInt(line));
+}).on("close", function () {
+
+    // 구현할 코드 구간//
+
+    process.exit();
+});
  */
 
-const fs = require("fs");
-const inputData = fs.readFileSync(0, "utf8").toString().split(" ");
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
-const x = parseInt(inputData[0]);
-const y = parseInt(inputData[1]);
+let input = [];
 
-if (x > 0 && y > 0) {
-  console.log(1);
-} else if (x < 0 && y > 0) {
-  console.log(2);
-} else if (x < 0 && y < 0) {
-  console.log(3);
-} else if (x > 0 && y < 0) {
-  console.log(4);
-}
+rl.on("line", function (line) {
+  input.push(parseInt(line));
+}).on("close", function () {
+  const x = input[0];
+  const y = input[1];
+
+  if (x > 0 && y > 0) {
+    console.log(1);
+  } else if (x < 0 && y > 0) {
+    console.log(2);
+  } else if (x < 0 && y < 0) {
+    console.log(3);
+  } else if (x > 0 && y < 0) {
+    console.log(4);
+  }
+  process.exit();
+});
