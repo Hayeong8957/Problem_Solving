@@ -1,5 +1,7 @@
 # 백준 Node.js 입출력
 
+[참고: https://velog.io/@hjkdw95/%EB%B0%B1%EC%A4%80-Node.js-%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%A0%95%EB%A6%AC]
+
 ## readline 모듈
 
 - readline 모듈은 JS 내장 모듈
