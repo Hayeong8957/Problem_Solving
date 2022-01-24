@@ -27,7 +27,7 @@
  * 1) 첫째줄을 제외한 나머지 줄을 기준으로 for문을 돌려줘서
  * 각 케이스를 split를 공백을 기준으로 나눠준다.
  * 
- * 2) shift 메서드를 사용하여 해당 배열의 맨 앞 값을 빼준다. (학생의 수)
+ * 2) 0번째 인덱스에 있는 요소를 따로 변수에 저장해 놓는다.
  * 
  * 3) 평균을 구하기 위한 해당 케이스 점수의 총합을 구해주고 학생의 수만큼 나눠 평균을 구해준다.
  * 
@@ -40,24 +40,25 @@
 
 let input = require("fs").readFileSync("/dev/stdin").toString().split("\n");
 
-let num = input[0] * 1;
+let allCases = Number(input[0]);
 
-for (let i = 1; i <= num; i++) {
-  let score = input[i].split(" ");
-  let num2 = score.shift() * 1;
-  let count = 0;
+for (let i = 1; i <= allCases; i++) {
+  let cases = input[i].split(" "); // 1) 공백 기준 나눔
+  let scoreCaseCount = Number(cases[0]); // 2) 첫번째 요소 = 학생의 수
+  let sum = 0;
 
-  let avg = score.reduce((acc, v) => (acc += v * 1), 0);
+  for (let j = 1; j <= scoreCaseCount; j++) {
+    sum += Number(cases[j]); // 3) 인덱스 1번부터 끝까지 돌려가면서 합계 구함
+  }
+  let average = sum / scoreCaseCount; // 평균 내기
 
-  avg /= num2;
-
-  for (let j = 0; j < num2; j++) {
-    if (score[j] > avg) {
-      count++;
+  let highScoreStudent = 0;
+  for (let k = 1; k <= scoreCaseCount; k++) {
+    if (average < cases[k]) {
+      highScoreStudent++; // 4) 평균 넘는 친구들 카운트 +1
     }
   }
 
-  let result = ((count / num2) * 100).toFixed(3);
-
+  result = ((highScoreStudent / scoreCaseCount) * 100).toFixed(3); // 5)
   console.log(result + "%");
 }
