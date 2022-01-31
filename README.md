@@ -1,6 +1,6 @@
 # Problem_Solving
 
-무지성 알고리즘 문제
+무지성 알고리즘 문제 
 
 ## Directory : BOJ
 
