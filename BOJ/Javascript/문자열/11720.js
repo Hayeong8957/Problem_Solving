@@ -21,15 +21,23 @@
  *
  */
 
-let fs = require("fs");
-let input = fs.readFileSync("/dev/stdin").tpString().split("\n");
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
-let casesCount = Number(input[0]);
-let cases = input[1].split("");
-let sum = 0;
+let input = [];
 
-for (let i = 0; i < casesCount; i++) {
-  sum = sum + Number(cases[i]);
-}
+rl.on("line", function (line) {
+  input.push(line);
+}).on("close", function () {
+  let N = input[0];
+  let sum = 0;
+  for (let i = 0; i < N; i++) {
+    sum += Number(input[1].charAt(i));
+  }
 
-console.log(sum);
+  console.log(sum);
+  process.exit();
+});
