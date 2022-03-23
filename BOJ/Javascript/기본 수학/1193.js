@@ -49,52 +49,22 @@
  *
  *  */
 
-const fs = require("fs");
-const x = Number(fs.readFileSync("/dev/stdin").toString().trim());
+let fs = require("fs");
+let input = fs.readFileSync("/dev/stdin").toString().trim();
+let number = Number(input);
+let value = 1;
 
-let groupCounter = 0;
-let ascendingNumArr = [];
-let descendingNumArr = [];
-
-while (x > 0) {
-  groupCounter++;
-  x = x - groupCounter;
+while (true) {
+  number -= value;
+  if (number <= 0) {
+    number += value;
+    break;
+  }
+  value++;
 }
 
-for (let i = 0; i < groupCounter; i++) {
-  ascendingNumArr.push(i + 1);
-  descendingNumArr.push(groupCounter - i);
-}
-
-if (groupCounter % 2 === 0) {
-  console.log(
-    `${ascendingNumArr[groupCounter - 1 + x]}/${
-      descendingNumArr[groupCounter - 1 + x]
-    }`
-  );
+if (value % 2 === 1) {
+  console.log(`${value - (number - 1)}/${1 + (number - 1)}`);
 } else {
-  console.log(
-    `${descendingNumArr[groupCounter - 1 + x]}/${
-      ascendingNumArr[groupCounter - 1 + x]
-    }`
-  );
+  console.log(`${1 + (number - 1)}/${value - (number - 1)}`);
 }
-
-// let fs = require("fs");
-// let input = fs.readFileSync("/dev/stdin").toString().trim();
-// let number = Number(input);
-// let value = 1;
-// while (true) {
-// 	number -= value;
-// 	if (number <= 0) {
-// 		number += value;
-// 		break;
-// 	}
-// 	value++;
-// }
-
-// if (value % 2 === 1) {
-// 	console.log(`${value - (number - 1)}/${1 + (number - 1)}`);
-// } else {
-// 	console.log(`${1 + (number - 1)}/${value - (number - 1)}`);
-// }
