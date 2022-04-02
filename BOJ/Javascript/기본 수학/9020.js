@@ -28,3 +28,60 @@
 5 11
  *
  * */
+const fs = require("fs");
+const input = fs
+  .readFileSync("/dev/stdin")
+  .toString()
+  .trim()
+  .split("\n")
+  .map((num) => parseInt(num));
+
+const T = input.shift();
+
+for (let i = 0; i < T; i++) {
+  const n = input.shift();
+  const isPrimeNumArr = new Array(n + 1);
+  const primeNumArr = [];
+  const checkPrimePair = [];
+
+  isPrimeNumArr.fill(true);
+  isPrimeNumArr[0] = isPrimeNumArr[1] = false;
+
+  for (let j = 2; j <= n; j++) {
+    if (Math.pow(j, 2) > 1000000) {
+      break;
+    } else {
+      for (let square = Math.pow(j, 2); square <= n; square += j) {
+        isPrimeNumArr[square] = false;
+      }
+    }
+  }
+  // 2부터 n까지 소수를 저장
+  for (let i = 2; i <= n; i++) {
+    if (isPrimeNumArr[i]) {
+      primeNumArr.push(i);
+    }
+  }
+  // 입력받은 n을 0으로 만들 수 있는 소수의 짝을 checkPrimePair배열에 2차원 형식으로 저장
+  // checkPrimePair가 저장된 모습은 [[2, 3],[3,5]]
+  for (let i = 0; i < primeNumArr.length; i++) {
+    for (let j = i; j < primeNumArr.length; j++) {
+      if (n - primeNumArr[i] - primeNumArr[j] === 0) {
+        checkPrimePair.push([primeNumArr[i]]);
+        checkPrimePair[checkPrimePair.length - 1].push(primeNumArr[j]);
+      }
+    }
+  }
+
+  let min = checkPrimePair[0][1] - checkPrimePair[0][0];
+  let indexOfMin = 0;
+  // checkPrimePair중 가장 작은 차이가 나는 소수 짝의 index를 구해준다.
+  for (let i = 0; i < checkPrimePair.length; i++) {
+    if (checkPrimePair[i][1] - checkPrimePair[i][0] < min) {
+      min = checkPrimePair[i][1] - checkPrimePair[i][0];
+      indexOfMin = i;
+    }
+  }
+  // 해당 index의 짝을 join('')형식으로 출력해준다.
+  console.log(checkPrimePair[indexOfMin].join(" "));
+}
