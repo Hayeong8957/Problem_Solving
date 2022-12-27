@@ -1,0 +1,50 @@
+<!--답안 코드
+for(let x of arr){
+    if(x%2===1){
+        sum+=x;
+        if(x<min) min=x;
+    }
+} 
+ -->
+
+<!--답안 코드와 다른 점
+- 굳이 불필요한 배열을 선언하지 않고 for문 하나로도 구현이 가능하다.
+- 나는 일반적인 for문을 사용했는데, 강의에서는 for ~ of 문을 사용함
+- for ~ of
+    - for(let value of iterable)
+    - value : 각 반복에 서로 다른 속성값이 value에 해당
+    - iterable : 반복되는 열거가능한 속성이 있는 객체
+    https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for...of
+ -->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){
+                let answer = [];
+                let newArr = [];
+                let sum = 0, min = Number.MAX_SAFE_INTEGER;
+                for(let i = 0; i < arr.length; i++) {
+                    if(arr[i] % 2 != 0) newArr.push(arr[i]);
+                }
+                for(let j = 0; j < newArr.length; j++) {
+                    sum = sum + Number(newArr[j]); 
+                }
+                for(let k = 0; k < newArr.length; k++) {
+                    if(min > newArr[k]) min = newArr[k];
+                }
+                answer.push(sum);
+                answer.push(min);
+                return answer;
+            }
+            
+            arr=[12, 77, 38, 41, 53, 92, 85];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
+

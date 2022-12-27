@@ -1,0 +1,27 @@
+<!-- 삼각형 판별
+- 가장 긴 막대 < 짧은 막대 두 개 합
+- a, b, c중에서 누가 가장 긴 막대인 지 확인 불가
+-> 애시당초 total값을 구해서 max값을 빼면 됨
+-->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(a, b, c){
+                let answer="YES", max, total;
+                total = a+b+c;
+                if(a>b) max = a;
+                else max = b;
+                if(max < c) max = c;
+                if(total - max <= max) answer = "NO";
+                return answer;
+            }
+
+            console.log(solution(13, 33, 17));
+        </script>
+    </body>
+</html>
