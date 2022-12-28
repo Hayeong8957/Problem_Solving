@@ -1,0 +1,28 @@
+<!-- 
+# 강의 답안 (split메서드 사용)
+let answer = s.split(t);
+return answer - 1;
+- t를 구분자로 되어 분리시켜 배열로 만든다.
+- 구분자는 배열 요소의 -1개니, answer-1
+ -->
+ 
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s, t){
+                let answer=0;
+                for (let x of s) {
+                    if(x === t) answer++
+                }
+                return answer;
+            }
+            
+            let str="COMPUTERPROGRAMMING";
+            console.log(solution(str, 'R'));
+        </script>
+    </body>
+</html>

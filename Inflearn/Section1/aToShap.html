@@ -1,0 +1,27 @@
+<!-- 
+# 정규식 치환 (replace)
+arr.replace(/old str/g, 'new str')
+
+# 강의 답안 (for문 이용)
+for(let x of s){
+    if(x === "A") answer += "#";
+    else answer += x;
+}
+ -->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){
+                let answer="";
+                answer = s.replace(/A/g, '#');
+                return answer;
+            }
+            let str="BANANA";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
