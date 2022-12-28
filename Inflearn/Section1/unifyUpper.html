@@ -1,0 +1,38 @@
+<!-- 
+# 강의 답안 
+- 하나하나 탐색
+# 1
+for(let x of s){
+    if(x===x.toLowerCase()) answer+=x.toUpperCase();
+    else answer += x;
+}  
+
+# 2 아스키코드 활용
+- 소문자를 대문자로 바꿈
+- 97-65 = 32 
+- String.fromCharCode() : 아스키코드를 문자로 변환
+for(let x of s){
+    let num = x.charCodeAt();
+    if(num >= 97 && num <= 122) answer += String.fromCharCode(num-32);
+    else answer += x;
+}
+ -->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){         
+                let answer="";
+                answer = s.toUpperCase();
+                return answer;
+
+            }
+
+            let str="ItisTimeToStudy";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<!-- 
+# 내 풀이
+- 메서드 파티
+- 문자열 길이 짝수 => 가운데 2개 문자 출력
+  => 길이를 2로 나누고 -1이 시작점, 길이를 2로 나눈 값이 끝지점 
+  => 길이를 2로 나눈 값 + 1을 해주는 이유는 slice메서드의 두번째 인자는 그 인덱스까지(포함하지 않고) 출력하기 때문
+- 문자열 길이 홀수 => 가운데 값 출력
+  => 홀수는 2로 나눠지지 않으니 floor()로 소수점을 없앰
+  => 1개만 출력해야 하니 길이를 2로 나눈 값에 +1
+
+# 강의 답안
+function solution1(s){  
+    let answer;
+    let mid=Math.floor(s.length/2)
+    if(s.length%2===1) answer=s.substring(mid, mid+1);
+    else answer=s.substring(mid-1, mid+1);
+    return answer;
+}
+
+function solution2(s){  
+    let answer;
+    let mid=Math.floor(s.length/2)
+    if(s.length%2===1) answer=s.substr(mid, 1);
+    else answer=s.substr(mid-1, 2);
+    return answer;
+}
+
+# 다른 점
+- substring(), substr()을 사용, mid값을 미리 선언함
+# substring(start, end), slice(start, end) : start ~ end까지 잘라내어 반환, end는 포함X
+# substr(start, length) : start부터 length길이만큼 잘라내어 반환
+# substring(), slice() 차이점
+- 파라미터로 전달되는 start > end일 경우 두 함수의 처리가 다르다.
+ -->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){  
+                let answer;
+                if(s.length % 2 == 0) answer = s.slice((s.length/2)-1, s.length/2+1);
+                else answer = s.slice(Math.floor(s.length/2), s.length/2+1);
+                return answer;
+            }
+            console.log(solution("good"));
+        </script>
+    </body>
+</html>

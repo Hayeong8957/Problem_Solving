@@ -1,0 +1,25 @@
+<!-- ****indexOf****
+- 중복 인자가 있더라도, 첫번째로 발견하는 index를 리턴해준다.
+- s.indexOf("k", 3) => index 3번부터 k를 찾아라.
+- s.indexOf("k") => index 0번부터 k를 찾아라.
+ -->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){  
+                let answer="";
+                for(let i = 0; i < s.length; i++){
+                    if(s.indexOf(s[i]) === i) {
+                        answer += s[i];
+                    } 
+                }
+                return answer;
+            }
+            console.log(solution("ksekkset"));
+        </script>
+    </body>
+</html>
