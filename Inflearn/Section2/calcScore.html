@@ -1,0 +1,58 @@
+<!-- 
+첫번째 정답 : 1, 연속으로 정답이면 +1씩, 틀린문제 0점
+
+# 내 풀이
+- 배열 순회하면서
+    - 0을 만나면 cnt=0 초기화 => cnt배열에 push
+    - 1을 만나면 cnt+=1 => cnt배열에 push
+- answer = cnt배열 요소 전체 합 => forEach 사용
+
+# 강의 답안
+function solution(arr){
+    let answer=0; cnt=0;
+    for(let x of arr){
+        if(x===1){
+            cnt++;
+            answer+=cnt;
+        }
+        else cnt=0;
+    }
+    return answer;
+}
+
+# 다른 점
+- 항상 문제 답안과 비교하면 내가 문제를 너무 어렵게 인식하는 건가 싶기도 하다.
+- 간단한 문제를 어렵게 푸는 것도 능력이다 참..
+- 답은 새 배열을 선언하지 않고 그냥 cnt값을 answer에 누적해 구했다.
+ -->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){         
+                let answer=0, cnt=0, cntArr=[];
+                for(let i = 0; i<arr.length; i++){
+                    if(arr[i] === 0){
+                        cnt = 0;
+                        cntArr.push(cnt);
+                    }
+                    else if(arr[i] === 1){
+                        cnt++;
+                        cntArr.push(cnt);
+                    }
+                }
+                console.log(cntArr);
+                cntArr.forEach(element => {
+                    answer += element;    
+                });
+                return answer;
+            }
+
+            let arr=[1, 0, 1, 1, 1, 0, 0, 1, 1, 0];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>

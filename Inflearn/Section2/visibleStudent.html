@@ -1,0 +1,29 @@
+<!-- 
+# 내 풀이
+- 앞에 순회한 인자들과 비교하여 max 업데이트
+- 첫 번째 인자를 max에 저장
+- 첫 번째 인자보다 큰 인자가 있으면 max 업데이트 하고 answer+1
+ -->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){         
+                let answer=1, max=arr[0];
+                for(let i = 0; i < arr.length; i++){
+                    if(arr[i] > max){
+                        max = arr[i];
+                        answer++; 
+                    }
+                }
+                return answer;
+            }
+
+            let arr=[130, 135, 148, 140, 145, 150, 150, 153];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>

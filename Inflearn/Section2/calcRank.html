@@ -1,0 +1,34 @@
+<!-- 
+# 풀이
+- 이중배열
+- 현재 요소보다 더 큰 요소가 존재하면, answer[i]++;
+- Array.from({length:n}, ()=>1) : n의 길이만큼 배열의 크기를 정하고, 
+                                  배열의 요소들을 1로 모두 초기화한다.
+- for i = 0~4
+    for j = 0~4
+        arr[j]>arr[i] : 나(i)보다 큰 값들이 존재한다, 내 등수는 증가
+ -->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){  
+                let n=arr.length;
+                let answer=Array.from({length:n}, ()=>1);
+                for(let i=0; i<n; i++){
+                    for(let j=0; j<n; j++){
+                        if(arr[j]>arr[i]) answer[i] += 1;
+                    }
+                }
+                
+                return answer;
+            }
+
+            let arr=[87, 89, 92, 100, 76];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
