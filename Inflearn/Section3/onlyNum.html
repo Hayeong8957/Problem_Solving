@@ -1,3 +1,32 @@
+<!-- 
+# 내 풀이
+- str 길이만큼 str을 돈다음, pattern에 맞는 요소가 있으면 answer에 추가
+- pattern = 0~9까지의 숫자
+- pattern.test(테스트할 요소)
+
+# 강의 답안
+function solution(str){
+    let answer="";
+    for(let x of str){
+        if(!isNaN(x)) answer += x;
+    }
+    return parseInt(answer);
+}
+
+- isNaN(x) : 숫자가 아니냐, 숫자가 아니면 true, 숫자면 false를 반환함
+- parseInt(x) : 정수로 변환
+
+# parseInt사용이 불가능 할 때 풀이
+function solution(str){
+    let answer = 0;
+    for(let x of str){
+        if(!isNaN(x) answer=answer*10+Number(x));
+    }
+    return answer;
+}
+- 0에다 *10+0해봤자 계속 0이 됨.
+- 0*10+2=2 -> 2*10+0=20 -> 20*10+8=208
+-->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -7,7 +36,14 @@
         <script>
             function solution(str){
                 let answer="";
-                
+                let pattern = /[0-9]/;
+                for(let i=0; i<str.length; i++){
+                    if(pattern.test(str[i]) == true){
+                        console.log(str[i]);
+                        answer += str[i];
+                    }
+                }
+
                 return parseInt(answer);
             }
             

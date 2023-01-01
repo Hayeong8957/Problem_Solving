@@ -1,3 +1,51 @@
+<!-- 
+# 내 풀이  - 실패!!!!!!!!!!!!!!!!!!!!!!!!!!
+1. 자기 자신이 t인 경우
+2. 현재 자신의 위치로부터 오른쪽으로 탐색했을 때 t가 있는 경우
+    - 자신의 글자의 위치에서 t가 있는 위치의 length 구하기
+3. 현재 자신의 위치로부터 왼쪽으로 탐색했을 때 t가 있는 경우
+    - 자신의 글자의 위치에서 t가 있는 위치의 length 구하기
+4. 2번과 3번을 비교했을 때 더 작은 경우의 length반환해서 answer에 push
+function solution(s, t){
+    let answer=[];
+    let r=0, l=0;
+    let N=s.length;
+    for(let i=0; i<N; i++){
+        if(s[i] === t) answer.push(0);
+        else{
+            for(let j=i+1; j<N; j++){
+                r = s.indexOf(t);
+                return r, i;
+            }
+            for(let k=i-1; k=0; j--){
+                l = s.indexOf(t);
+                return l, i
+            }
+        }
+    }
+    if(r>l){
+        answer.push(i-l);
+    }
+    else{
+        answer.push(r-i);
+    }
+
+    return answer;
+    }
+}
+
+# 강의 답안 
+- 시간 복잡도 O(2N)
+- P를 큰 값으로 잡아놓는다.
+- for문이 오른쪽 방향(0~length)으로 돈다.
+    - 알파벳 t가 아닌 문자는 p++, answer에 push
+    - 알파벳 t인 문자는 p=0, answer에 push
+- for문이 왼쪽 방향(length~0)으로 돈다.
+    - 알파벳 t가 아닌 문자는 p++, 
+      전에 오른쪽 방향으로 돌았던 answer과 비교하여
+      작은 값을 answer에 push
+    - 알파벳 t인 문자는 p=0, answer에 push
+ -->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -8,7 +56,24 @@
             function solution(s, t){
                 let answer=[];
                 let p=1000;
-               
+                for(let x of s){
+                    if(x===t){
+                        p=0;
+                        answer.push(p);
+                    }
+                    else{
+                        p++;
+                        answer.push(p);
+                    }
+                }
+                p=1000;
+                for(let i=s.length-1; i>=0; i--){
+                    if(s[i]===t) p=0;
+                    else{
+                        p++;
+                        answer[i]=Math.min(answer[i], p);
+                    }
+                }
                 return answer;
             }
             

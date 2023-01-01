@@ -1,3 +1,10 @@
+<!-- 
+# 내 풀이
+1. for문을 돌면서 이전 문자와 같은 지 체크, 같으면 cnt++
+2. 이전 문자와 다르면 answer에 해당 문자 넣음
+    - cnt가 1초과면 answer+cnt형식으로 리턴
+    - cnt=1로 초기화
+ -->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -7,7 +14,15 @@
         <script>
             function solution(s){
                 let answer="";
-                
+                let cnt=1;
+                for(let i=0; i<s.length; i++){
+                    if(s[i]===s[i+1]) cnt++; 
+                    else{
+                        answer+=s[i];
+                        if(cnt>1) answer+=String(cnt);
+                        cnt=1;
+                    }
+                }
                 return answer;
             }
             
