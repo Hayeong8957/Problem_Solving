@@ -1,0 +1,33 @@
+<!-- 
+# 동적계획법(DP) : 문제 크기를 직관적으로 알 수 있는 작은 단위로 쪼개서 해결하고,
+데이터의 넓이 를 조금씩 넓혀가면서 해결한다.(점화식의 관계를 이용)
+(풀이)
+첫번째 도착점으로 가는 데 가는 방법이 몇가지인지 
+dy라는 배열을 만들어서 n+1개를 0으로 초기화
+dy[1] => 첫번째 계단까지 가는 방법의 수
+dy[2] => 두번째 계단까지 가는 방법의 수
+dy[3] => 첫번째 계단까지 가는 방법의 수 + 두번쨰 계단까지 가는 방법의 수
+ -->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let answer = 0;
+        let dy = Array.from({ length: n + 1 }, () => 0);
+        dy[1] = 1;
+        dy[2] = 2;
+        for (let i = 3; i <= n; i++) {
+          dy[i] = dy[i - 2] + dy[i - 1];
+        }
+        answer = dy[n];
+        return answer;
+      }
+
+      console.log(solution(7));
+    </script>
+  </body>
+</html>
