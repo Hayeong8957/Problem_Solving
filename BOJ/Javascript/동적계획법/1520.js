@@ -96,6 +96,18 @@ console.log(DFS(0, 0));
 
 /** C언어 연습*/
 /**
+ * C언어 2차원 배열 원하는 크기로 입력 받기
+ * 
+ * int **arr = (int **)malloc(sizeof(int*)*A);
+ * => A칸 짜리 인트 포인터를 담는 배열 생성
+ * for(int i=0; i<A; i++){
+ *    arr[i] = (int *)malloc(sizeof(int)*B);
+ * => B칸 짜리 인트공간을 담는 배열 생성 
+ * 여기서 arr[i]는 포인터를 담은 배열의
+ * i번째 칸을 의미, 이는 포인터이기 때문에
+ * 다시 B칸짜기 배열을 생성하고 가리키게 한다.
+ * }
+ * 
 #include <stdio.h>
 #include <memory.h>
 
