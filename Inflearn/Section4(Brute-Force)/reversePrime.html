@@ -1,0 +1,60 @@
+<!-- 
+# 내 풀이
+1. 소수 판별 함수
+  - 1이면 1 리턴
+  - 2이상부터 자기 자신까지 나눠줌 (=> 시간 절약을 위해 자기 자신의 제곱근까지)
+  - 만약 num이 i로 나뉘어진다면 소수가 아님
+  - i로 나뉘어지지 않는다면 소수임
+2. 메인 함수
+  - 각 요소 탐색 -> for~of
+  - 10으로 나눈 나머지가 제일 끝의 숫자
+  - result * 10 + 10으로 나눈 나머지 
+    =>(82일 경우) 0+2 = 2, 2*10 + 8 => 28
+    =>(1289일 경우) 0+9 = 9, 9*10+8 => 98, 98*10+2 => 982, 982*10+1 => 9821
+  - 10으로 나누고 소수점 없애고(parseInt) 또 10으로 나누고... 반복
+
+# 강의 풀이
+functio solution(arr){
+  let answer=[];
+  for(let x of arr){
+    let res=Number(x.toString().split("").reverse().join(''));
+    if(isPrime(res)) answer.push(res);
+  }
+  return answer;
+}
+ -->
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function isPrime(num) {
+        if (num === 1) return false;
+        for (let i = 2; i <= parseInt(Math.sqrt(num)); i++) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      }
+      function solution(arr) {
+        let answer = [];
+        for (let x of arr) {
+          let result = 0;
+          while (x) {
+            let y = x % 10;
+            result = result * 10 + y;
+            x = parseInt(x / 10);
+          }
+          if (isPrime(result)) answer.push(result);
+          else answer.push('false');
+        }
+        return answer;
+      }
+
+      let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
