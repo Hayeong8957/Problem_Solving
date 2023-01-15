@@ -1,0 +1,75 @@
+<!-- ############ 못 품 ##############
+# 내풀이 - 
+M번의 수학테스트 등수
+A학생 -> 멘토, B학생 -> 멘티
+A학생은 M번의 수학테스트에서 B보다 등수가 앞서야함.
+현재 있는 아이의 앞, 뒤에 자신보다 낫은 숫자가 있는지 확인..?
+
+# 강의 풀이
+인덱스 번호가 등수 인덱스0 -> 1등
+(A, B)라는 경우의 수 : 4*4 => 16가지
+(i=멘토, j=멘티, pi=i학생이 몇등인지, pj=j학생이 몇등인지)
+for(i=1~4)
+  for(j=1~4)
+    for(k=0~3)
+      for(s=0~4)
+        test[k][s]===i => pi=s => i번 학생이 몇등인 지 저장
+        test[k][s]===j => pj=s => j번 학생이 몇등인 지 저장
+      만약 pi<pj이면 cnt++
+    cnt가 3이면 answer++
+
+- (3, 1)이 멘토-멘티 짝이 이루어지는 답인데 이것을 예시로 들어보면
+  1) test[0][0]===3 => pi=0
+     test[0][2]===1 => pj=2
+     pi<pj(O) , cnt=1
+  2) test[1][1]===3 => pi=1
+     test[1][3]===1 => pj=3
+     pi<pj(O), cnt=1+1
+  3) test[2][0]===3 => pi=0
+     test[2][1]===1 => pj=1
+     pi<pj(O), cnt=1+1+1
+ -->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(test) {
+        let answer = 0,
+          tmp = [];
+        m = test.length;
+        n = test[0].length;
+        for (let i = 1; i <= n; i++) {
+          for (let j = 1; j <= n; j++) {
+            let cnt = 0;
+            for (let k = 0; k < m; k++) {
+              let pi = 0,
+                pj = 0;
+              for (let s = 0; s < n; s++) {
+                console.log(i, j);
+                if (test[k][s] === i) pi = s;
+                if (test[k][s] === j) pj = s;
+              }
+              if (pi < pj) cnt++;
+            }
+            if (cnt === m) {
+              tmp.push([i, j]);
+              answer++;
+            }
+          }
+        }
+        console.log(tmp);
+        return answer;
+      }
+
+      let arr = [
+        [3, 4, 1, 2],
+        [4, 3, 2, 1],
+        [3, 1, 4, 2],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

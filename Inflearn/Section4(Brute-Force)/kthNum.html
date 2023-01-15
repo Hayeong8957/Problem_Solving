@@ -1,0 +1,35 @@
+<!-- 
+# 풀이
+1) n장, 모든 경우의 수 기록, k번째로 큰 수 출력
+i(0)~n, i(0)+j(1)~n, i(0)+j(1)+q(2)~n
+=> 더한 후 새 set에 add
+=> 그 set 중복 제거(set으로 선언), sort, k-1번째 인덱스 수 출력
+=> 파이썬이랑 비슷하네 set으로 선언하면 중복 제거 되는거
+ -->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, k, card) {
+        let answer;
+        let tmp = new Set();
+        for (let i = 0; i < n; i++) {
+          for (let j = i + 1; j < n; j++) {
+            for (let q = j + 1; q < n; q++) {
+              tmp.add(card[i] + card[j] + card[q]);
+            }
+          }
+        }
+        let a = Array.from(tmp).sort((a, b) => b - a);
+        answer = a[k - 1];
+        return answer;
+      }
+
+      let arr = [13, 15, 34, 23, 45, 65, 33, 11, 26, 42];
+      console.log(solution(10, 3, arr));
+    </script>
+  </body>
+</html>

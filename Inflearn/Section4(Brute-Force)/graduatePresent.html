@@ -1,0 +1,61 @@
+<!-- 
+# 내 풀이 
+(!important point!)
+모든 경우를 다 해봄 => 첫번째 상품을, 두번째 상품을, .... 다 할인 받았을 경우
+product 총 비용으로 sort => 오름차순 sort => 비용이 작은 것 부터 구매하면 최대 갯수 얻을 수 있으므로
+=> product.sort((a, b) => a[0] + a[1] - (b[0] + b[1]));
+1) for i=0~n
+  // 남은 예산
+  let charge = m-(product[i][0]/2 + product[i][1]);
+  let cnt = 1
+  // i번째꺼 할인해서 샀으니까 cnt=1부터 시작
+  2) for j=0~n
+    //살려고 하는 것이 j번째 것인데, i는 할인 된 상품이므로 사면 안됨!
+    if(product[j][0] + product[j][1] > charge) break
+    if(product[j][0] + product[j][1] <= charge){
+      charge -= product[j][0] + product[j][1] 
+      // 샀으니까 예산에서 빼버려
+      cnt++
+      // 샀으니까 cnt올려
+    }
+  3) answer=Math.max(answer,cnt)
+      
+
+ -->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, product) {
+        product.sort((a, b) => a[0] + a[1] - (b[0] + b[1]));
+        let answer = 0;
+        let n = product.length;
+        for (let i = 0; i < n; i++) {
+          let charge = m - (product[i][0] / 2 + product[i][1]);
+          let cnt = 1;
+          for (let j = 0; j < n; j++) {
+            if (j !== i) {
+              if (product[j][0] + product[j][1] > charge) break;
+              charge -= product[j][0] + product[j][1];
+              cnt++;
+            }
+          }
+          answer = Math.max(answer, cnt);
+        }
+        return answer;
+      }
+
+      let arr = [
+        [6, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [10, 3],
+      ];
+      console.log(solution(28, arr));
+    </script>
+  </body>
+</html>
