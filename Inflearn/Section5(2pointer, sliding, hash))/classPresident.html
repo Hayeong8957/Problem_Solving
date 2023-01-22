@@ -1,0 +1,48 @@
+<!-- 해시맵 문제 
+Map => 자바스크립트 객체 사용
+1. let sH = new Map();
+hash map 객체 생성 -> key와 value가 한 쌍으로 된 객체
+
+2. sH.set("B", 1)
+B라는 키가 하나 나왔을 때 1로 세팅
+
+3. sH.set("D", sH.get("D")+1)
+똑같은 키를 만나면 get을 사용해서 카운팅
+
+4. sH.has("D") => true, false값으로 나옴
+기존 키가 있는 지 확인하는 메서드
+
+5. max는 minimum으로 초기화, min은 max로 초기화
+- let max = Number.MIN_SAFE_INTEGER
+- let min = Number.MAX_SAFE_INTEGER
+-->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+        let sH = new Map();
+        for (let x of s) {
+          if (sH.has(x)) sH.set(x, sH.get(x) + 1);
+          else sH.set(x, 1);
+        }
+        let max = Number.MIN_SAFE_INTEGER;
+        for (let [key, val] of sH) {
+          if (val > max) {
+            max = val;
+            answer = key;
+          }
+        }
+
+        return answer;
+      }
+
+      let str = 'BACBACCACCBDEDE';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>

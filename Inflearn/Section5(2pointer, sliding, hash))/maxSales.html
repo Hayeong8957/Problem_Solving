@@ -1,0 +1,37 @@
+<!-- 슬라이딩윈도우 문제
+N일 동안 매출 기록, 연속된 K일 동안의 최대 매출액
+# 내 풀이
+1. K가지 숫자를 answer에 더함
+2. tempSum에 answer을 복사해 보관
+3. answer까지 더했던 인덱스의 다음 인덱스를 시작점으로 
+- 바로 앞 인덱스 값을 빼고, 바로 다음 인덱스 값을 더함
+- answer과 tempSum을 비교해 더 큰 값을 answer에 할당 
+-->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(k, arr) {
+        let answer,
+          tempSum = 0;
+        if (arr.length < k) return null;
+        for (let i = 0; i < k; i++) {
+          tempSum += arr[i];
+        }
+        answer = tempSum;
+        for (let i = k; i < arr.length; i++) {
+          tempSum = tempSum - arr[i - k] + arr[i];
+          answer = Math.max(answer, tempSum);
+        }
+
+        return answer;
+      }
+
+      let a = [12, 15, 11, 20, 25, 10, 20, 19, 13, 15];
+      console.log(solution(3, a));
+    </script>
+  </body>
+</html>
