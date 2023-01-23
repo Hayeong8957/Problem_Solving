@@ -1,0 +1,47 @@
+<!-- 해시맵 문제 
+아나그램 -> 두 문자열이 알파벳의 나열 순서를 다르지만 구성이 일치한 문자열
+
+# 내 풀이
+1. 첫번째 문자열 for문 돌면서 새로 나온 문자는 1로 세팅
+두번째로 나온 문자는 1 더해서 세팅
+2. 두번째 문자열 for문 돌면서 해당 문자가 없거나 value 값이 0이면 No,
+그 문자가 있으면 -1
+-> 돌면서 문자 만났을 때 -1씩 감소시키는데, 
+만났을 때 값이 0이면 첫번째 문자열에서의 그 문자보다 
+현재 문자열이 그 문자를 하나 더 가지고 있다는 뜻이므로
+"난 있는데 닌 없냐? 이런 ㅆ.." 이런 느낌
+
+-->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(str1, str2) {
+        let answer = 'YES';
+        let checkArr = new Map();
+
+        for (let x of str1) {
+          if (checkArr.has(x)) checkArr.set(x, checkArr.get(x) + 1);
+          else checkArr.set(x, 1);
+        }
+        for (let x of str2) {
+          if (!checkArr.has(x) || checkArr.get(x) == 0) return 'NO';
+          checkArr.set(x, checkArr.get(x) - 1);
+        }
+
+        return answer;
+      }
+      // YES
+      // let a = 'AbaAeCe';
+      // let b = 'baeeACA';
+      // NO
+      let a = 'abaCC';
+      let b = 'Caaab';
+
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
