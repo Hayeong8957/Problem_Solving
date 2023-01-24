@@ -1,0 +1,38 @@
+<!-- 스택 문제
+스택 => LIFO => Last in First out => 마지막에 들어온 것이 처음으로 나가
+스택 관련 메서드 찾아보자. => 그냥 쉽게 push pop하면 됨
+
+# 내 풀이
+한놈만 조지자는 마인드로 쳐 넣다가 다른 놈 만나면 쳐 꺼내
+근데 다른 놈 만났을 때 길이가 0이면 No -> 조지자 생각했던 놈이 나타나지 않았으므로
+그리고 for문 다 돌았는데도 불구하고 stack길이가 0 초과다?
+짝이 안 맞다는 뜻이니 No
+
+-->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = 'YES';
+        stack = [];
+        for (let x of s) {
+          if (x === '(') {
+            stack.push();
+          } else {
+            if (stack.length === 0) return 'NO';
+            stack.pop();
+          }
+        }
+        if (stack.length > 0) return 'NO';
+        return answer;
+      }
+
+      let a = '(()(()))(()';
+      console.log(solution(a));
+    </script>
+  </body>
+</html>
