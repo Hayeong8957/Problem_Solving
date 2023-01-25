@@ -1,0 +1,30 @@
+<!-- 
+괄호 사이에 있는 문자 제외한 문자 이어서 출력
+(이거나 문자를 만났을 때 : push
+)를 만났을 때 : (를 만날 때 까지 pop
+
+ -->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+        let stack = [];
+        for (let x of s) {
+          if (x === ')') {
+            while (stack.pop() !== '(');
+          } else stack.push(x);
+        }
+        answer = stack.join('');
+        return answer;
+      }
+
+      let str = '(A(BC)D)EF(G(H)(IJ)K)LM(N)';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
