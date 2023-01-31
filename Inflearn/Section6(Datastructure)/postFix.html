@@ -1,0 +1,39 @@
+<!-- 
+# 내 풀이
+숫자인지 확인하는 메서드 : isNaN
+1. 숫자 들어가면 하나씩 스택에 넣고,
+2. 연산자 들어오면 숫자 두개 빼서 연산하고 스택에 넣음
+
+
+ -->
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+        let stack = [];
+        for (let x of s) {
+          if (!isNaN(x)) stack.push(Number(x));
+          else {
+            let num1 = stack.pop();
+            let num2 = stack.pop();
+            if (x === '+') stack.push(num1 + num2);
+            else if (x === '-') stack.push(num1 - num2);
+            else if (x === '*') stack.push(num1 * num2);
+            else if (x === '/') stack.push(num1 / num2);
+          }
+        }
+        answer = stack[0];
+        return answer;
+      }
+
+      let str = '352+*9-';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
