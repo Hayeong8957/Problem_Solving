@@ -1,0 +1,44 @@
+<!-- 
+쇠막대기!!!! 큰일이야 이건 문제 이해가 안됨요
+문제 이해부터 해봅시다
+
+1. 여는 괄호를 만난다 -> 무조건 stack에 push
+-> 막대기의 시작지점 || 레이저 시작 지점
+
+2. 닫는 괄호를 만난다 -> 무조건 stack에서 pop
+-> 막대기의 끝 지점 || 레이저 끝 지점
+
+3. 닫는 괄호를 만나면 바로 앞을 확인해야 한다.
+3-1. 닫는 괄호가 i번째이면, i-1이 여는 괄호다? => 레이저가 됨 
+    => pop시킴 => 나머지는 막대 시작점 => stack에 남은 여는 괄호 수(stack_size)를 answer에 더해줌
+
+3-2. 닫는 괄호가 i번째이면, i-1이 여는 괄호가 아니다? => 막대기의 끝이 됨
+    => pop시킴 => answer에 +1 => 잘리고 난 마지막 막대기 하나 더해줘야하므로
+
+ -->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = 0;
+        let stack = [];
+        for (let i = 0; i < s.length; i++) {
+          if (s[i] === '(') stack.push('(');
+          else {
+            stack.pop();
+            if (s[i - 1] === '(') answer += stack.length;
+            else answer++;
+          }
+        }
+        return answer;
+      }
+
+      let a = '()(((()())(())()))(())';
+      console.log(solution(a));
+    </script>
+  </body>
+</html>
