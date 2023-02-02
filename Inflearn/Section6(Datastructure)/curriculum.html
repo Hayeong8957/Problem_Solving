@@ -1,0 +1,45 @@
+<!--
+필수과목 반드시 이수, 순서 정해짐
+a,b,c,d,e,f,g -> 필수과목 cba로 주어지면 필수과목은 c,b,a이고 꼭 이 순서로 
+과목순서 설계 잘 된 것이면 yes, 잘못된 것이면 no
+
+# includes()
+arr.includes(요소) => true, false
+
+# 내풀이
+1. 필수과목 문자열 문자로 나눠서 queue에 저장
+2. plan과목 문자열 순회하면서 include()메소드 사용해서 queue에 있는지 확인
+2-1. temp라는 변수에 queue현재 맨 앞 자리에 있는 값을 저장
+2-2. 현재 순회한 plan과목 문자가 temp랑 동일한 지 확인
+2-3. 동일하지 않으면 return NO
+3. 문자열 다 돌았는데 큐 길이가 0 아니면 No
+  -->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(need, plan) {
+        let answer = 'YES';
+        let queue = need.split('');
+        let temp;
+        console.log(queue);
+        for (let x of plan) {
+          if (queue.includes(x)) {
+            temp = queue.shift();
+            if (x !== temp) return 'NO';
+          }
+        }
+        if (queue.length !== 0) return 'NO';
+
+        return answer;
+      }
+
+      let a = 'CBA';
+      let b = 'CBAGE';
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
