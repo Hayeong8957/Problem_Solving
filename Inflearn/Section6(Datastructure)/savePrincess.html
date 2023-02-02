@@ -20,8 +20,8 @@ K를 외치면 그 왕자는 공주를 구하러 가는 것에서 제외되고 p
 # 내풀이
 1. 입력받은 N K, N만큼의 1씩 증가하는 숫자 배열을 만들어 놓음
 2. 배열 전체 길이만큼 반복
-2-1. for문으로 k까지 돌면서 shift한 값을 큐에 push 
-    => k전까지의 값을 빼서 뒤에 넣는 느낌, k번째 값을 제거하기 위해
+2-1. for문으로 k-1까지 돌면서 shift한 값을 큐에 push 
+    => k전까지의 값을 빼서 뒤에 넣는 느낌, k번째 값을 맨 앞에서 제거하기 위해
 2-2. for문 밖으로 나오면 queue.shift()만 해서 k번째 값 제거
 2-2. queue길이가 1이면 queue.shift한 값을 answer에 배정
 [1, 2, 3, 4, 5, 6, 7, 8]
@@ -53,7 +53,7 @@ K를 외치면 그 왕자는 공주를 구하러 가는 것에서 제외되고 p
         let queue = Array.from({ length: n }, (v, i) => i + 1);
         // console.log(queue); // [1, 2, 3, 4, 5, 6, 7, 8]
         while (queue.length) {
-          for (let i = 1; i < k; i++) {
+          for (let i = 0; i < k - 1; i++) {
             queue.push(queue.shift());
           }
           // console.log(queue);
