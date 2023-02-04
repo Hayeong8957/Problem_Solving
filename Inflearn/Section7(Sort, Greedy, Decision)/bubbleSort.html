@@ -1,0 +1,72 @@
+<!-- 버블 정렬
+인접한 2개의 레코드 비교하여 순서대로 서로 교환
+리스트의 전체에 수행, 한 번 스캔 완료시 오른쪽 끝이 가장 큰 레코드
+끝으로 이동한 레코드 제외하고 다시 스캔 반복
+스캔 작업 총 횟수(일반적인 경우) = data갯수 -1
+
+# 내 풀이
+1. outer ;oop는 i가 0부터 arr.length까지 돌림
+2. Inner loop는 j가 0부터 arr.length - 1 - i까지 돌림
+  -> inner loop는 왜 -1을 해야 하냐면 j랑 j+1이랑 비교할 거기 때문에
+  -> 마지막 데이터를 포함하지 않아도 검색 대상에 포함되기 때문임
+  -> -i하는 이유는 각 회전이 끝날 때마다 맨 마지막 데이터는 정렬이 된 상태이기 때문임
+
+3. 값이 바뀌면 flag변수를 줌
+4. 값이 바뀌지 않은 경우는 정렬이 되어있는 상태이기에 다음 스탭으로 넘어가줌
+for(i=0 ~ i=length){
+  change = false
+  for(j=0; j< length-1 ; j++ ){
+    if(arr[j] > a[j+1]){
+      [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
+      change = true'
+    }
+  }
+  if (change !== true) break;
+}
+console.log(arr);
+
+
+# 강의안 답안
+function solution(arr){
+    let answer=arr;
+    for(let i=0; i<arr.length-1; i++){
+        for(let j=0; j<arr.length-i-1; j++){
+            if(arr[j]>arr[j+1]){
+                [arr[j], arr[j+1]]=[arr[j+1], arr[j]];
+            }
+        }   
+    } 
+    return answer;
+}
+- 굳이 flag값을 안 줘도 됨
+- 하지만 flag값을 준 이유는 switch를 달아놓음으로써 중간에 정렬이 되어있으면 멈추게 하려고 달아놓음
+- 버블 정렬은 구현은 쉬우나 시간 복잡도가 최악이 O(N^2)....
+-->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = arr;
+        for (let i = 0; i < arr.length; i++) {
+          changed = false;
+          for (let j = 0; j < arr.length - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+              [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+              changed = true;
+            }
+          }
+          if (changed !== true) break;
+        }
+        return answer;
+      }
+
+      let arr = [13, 5, 11, 7, 23, 15];
+      let arr2 = [15, 2, 3, 4, 7, 0, 1];
+      console.log(solution(arr2));
+    </script>
+  </body>
+</html>
