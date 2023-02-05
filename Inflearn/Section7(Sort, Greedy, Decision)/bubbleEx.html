@@ -1,0 +1,60 @@
+<!-- special Sort(구글 인터뷰)
+음의 정수 왼쪽, 양의 정수 오른쪽, 순서 변환X
+
+# 내풀이
+1. leftTemp: 음수만 있는 배열
+2. rightTemp: 양수만 있는 배열
+3. leftTemp + rightTemp => spread 연산자 => [...arr1, ...arr2, ...]
+
+# 강의안 풀이(버블정렬 응용)
+- 오.. 버블정렬을 응용해서 풀다니 
+- 이웃한 것끼리 비교해서 앞이 양수고 뒤가 음수면 바꿔라!
+
+[기존 버블 정렬]
+for(let i=0; i<arr.length-1; i++){
+    for(let j=0; j<arr.length-i-1; j++){
+        if(arr[j]>arr[j+1]){
+            [arr[j], arr[j+1]]=[arr[j+1], arr[j]];
+        }
+    }   
+} 
+
+- j가 양수이고, j+1이 음수면 swap
+- 버블정렬에서 가장 중요한 것은 inner loop에서 length-1-i해주는 것
+ -> inner loop는 왜 -1을 해야 하냐면 j랑 j+1이랑 비교할 거기 때문에
+ -> 마지막 데이터를 포함하지 않아도 검색 대상에 포함되기 때문임
+ -> -i하는 이유는 각 회전이 끝날 때마다 맨 마지막 데이터는 정렬이 된 상태이기 때문임
+
+[구글 인터뷰 문제 버블 정렬]
+for(let i=0; i<arr.length-1; i++){
+    for(let j=0; j<arr.length-i-1; j++){
+        if(arr[j]>0 && arr[j+1]<0){
+            [arr[j], arr[j+1]]=[arr[j+1], arr[j]];
+        }
+    }   
+} 
+-->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer;
+        let leftTemp = [],
+          rightTemp = [];
+        for (let x of arr) {
+          if (x > 0) rightTemp.push(x);
+          else leftTemp.push(x);
+        }
+        answer = [...leftTemp, ...rightTemp];
+        return answer;
+      }
+
+      let arr = [1, 2, 3, -3, -2, 5, 6, -6];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!-- 삽입정렬
+- 정렬된 부분과 정렬 안 된 부분으로 나뉨
+- 정렬 안 된 부분의 가장 왼쪽 원소를 정렬된 부분에 삽입
+- 무조건 두 번째 자료부터 시작해 그 앞의 자료들과 비교
+=> 일단 첫 번째 자료는 무조건 정렬이 되어있다고 생각하면 됨
+=> 현재 자료가 앞의 자료보다 작다면 앞으로 가서 삽입해주는 느낌!
+- 값을 비교하고 삽입할 위치를 지정한 후 자료를 뒤로 옮기고 지정한 자리에 자료 삽입
+
+# 내 풀이
+1. outer loop: 처음 idx는 1부터 시작
+2. inner loop: i부터 0까지 i--하면서 값 비교
+3. 앞에 있는 값이 현재 값보다 작다? 자리 바꿔줘
+
+# 강의안 풀이
+[Answer #1]
+1. outer loop: 첫 idx는 1부터 시작
+2. temp : arr[i]값을 임시로 저장해놓는다. 
+3. inner loop: j는 i-1 ~ 0으로 돈다. => i번째를 제외한 나머지 값들과의 비교를 위해
+4. arr[j]>temp보다 크면 arr[j+1]=arr[j]로 복사해준다.
+5. j가 -1이 되어 끝이되면, j+1을 해줘서 그 지점에 temp를 넣어줌
+ 
+    # 아니 왜이렇게 복잡하게 구현을 했대라고 생각이 들었는데,
+    내 코드는 inner loop가 자기 자신부터 0까지 다 돌고
+    강사님 코드는 temp를 이용해서 필요한 값만 swap해주는 건가..
+
+function solution(arr){
+    let answer=arr;
+    for(let i=0; i<arr.length; i++){
+        let tmp=arr[i], j;
+        for(j=i-1; j>=0; j--){
+            if(arr[j]>tmp) arr[j+1]=arr[j];
+            else break;
+        }
+        arr[j+1]=tmp;
+    } 
+    return answer;
+}
+
+[Answer #2]
+function solution(arr){
+    let answer=[];
+    answer.push(arr[0]);
+    for(let i=1; i<arr.length; i++){
+        for(let j=0; j<answer.length; j++){
+            if(arr[i]<answer[j]){
+                answer.splice(j, 0, arr[i]);
+                break;
+            } 
+        }
+    }
+    return answer;
+}
+-->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = arr;
+        for (let i = 1; i < arr.length; i++) {
+          for (let j = i; j >= 0; j--) {
+            if (arr[j - 1] > arr[j]) {
+              [arr[j - 1], arr[j]] = [arr[j], arr[j - 1]];
+            }
+          }
+        }
+        return answer;
+      }
+
+      let arr = [11, 7, 5, 6, 10, 9];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
