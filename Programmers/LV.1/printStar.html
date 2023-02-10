@@ -1,0 +1,45 @@
+<!-- 
+  표준 입력 정수n이 주어짐
+  별 문자를 이용해 높이가 n인 삼각형을 출력
+
+  # .repeat(n)
+
+  # 근데 표준 입력에 익숙하지가 않아서 이거 어쩐담
+
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const readline = require('readline');
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+      });
+
+      let input = [];
+
+      rl.on('line', function (line) {
+        input = line.split(' ');
+      }).on('close', function () {
+        function star(input) {
+          const n = input;
+          let answer;
+          for (let i = 1; i <= n; i++) {
+            answer += '*'.repeat(i);
+            answer += '\n';
+          }
+
+          return answer;
+        }
+        console.log(Number(input[0]) + Number(input[1]));
+      });
+    </script>
+  </body>
+</html>
