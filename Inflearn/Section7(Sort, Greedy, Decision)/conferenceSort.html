@@ -1,0 +1,65 @@
+<!-- 회의실 배정
+한 개 회의실 -> n개의 회의 -> 회의실 사용표를 만들려고 함
+각 회의에 대해 시작시간과 끝나는 시간 주어짐 -> 각 회의가 겹치지 않게 하면서
+회의실을 사용할 수 있는 최대수의 회의를 찾아라
+
+0. 들어오는 input값이 시작시간 <= 끝나는 시간인지 확인 
+-> 조건 안 맞으면 고냥 끝내부려
+1. 끝나는 시간으로 정렬을 해야 겹치지 않고 최대 수 회의 가능
+-> 끝나는 시간이 같으면, 시간 순대로 오름차순 정렬
+-> 끝나는 시간 다르면, 끝나는 시간 순대로 오름차순 정렬
+[1, 4][2, 3][3, 5][4, 6][5, 7]
+=> [2, 3][1, 4][3, 5][4, 6][5, 7] 
+
+2. temp에 [1] 임시 저장, 
+한 요소씩 돌면서 [1]이 다음번째의 [0]보다 작거나 같으면 answer++
+해당 요소의 [1]을 temp에 저장
+[2, 3][1, 4][3, 5][4, 6][5, 7]
+0 <= 2 , 1, temp=3
+3 <= 1, X, temp=3
+3 <= 3, 2, temp=5
+5 <= 4, X, temp=5
+5 <= 5, 3, temp=7   => loop end
+
+ -->
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(meeting) {
+        let answer = 0;
+        for (let i = 0; i < meeting.length; i++) {
+          if (meeting[i][0] > meeting[i][1]) break;
+        }
+        meeting.sort(function (a, b) {
+          if (a[1] === b[1]) return a[0] - b[0];
+          else return a[1] - b[1];
+        });
+        console.log(meeting);
+
+        let temp = 0;
+        for (let i = 0; i < meeting.length; i++) {
+          if (temp <= meeting[i][0]) {
+            answer++;
+            temp = meeting[i][1];
+          }
+        }
+
+        return answer;
+      }
+
+      let arr = [
+        [1, 4],
+        [2, 3],
+        [3, 5],
+        [4, 6],
+        [5, 7],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
