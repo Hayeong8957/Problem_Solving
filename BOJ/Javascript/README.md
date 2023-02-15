@@ -59,6 +59,35 @@ rl.on('line', (input) => {
 });
 ```
 
+## readline 사용 예시
+- 2869번: 달팽이
+
+```
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+let input = [];
+
+rl.on("line", function (line) {
+  // 입력 받아서 input에 배열로 넣음
+  input = line.split(" ").map(Number);
+  // 입력 멈춤
+  rl.close();
+}).on("close", function () {
+  // 알고리즘 적는 부분 -> 출력할 부분
+  const A = input[0];
+  const B = input[1];
+  const V = input[2];
+
+  console.log(Math.ceil((V - B) / (A - B)));
+
+  process.exit();
+});
+```
+
 ---
 
 ## fs 모듈
