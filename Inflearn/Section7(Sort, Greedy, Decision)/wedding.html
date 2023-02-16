@@ -1,0 +1,101 @@
+<!-- 결혼식
+  3일간 쉬지 않고 피로연 진행, 피로연 참석 친구들 N명의 참석하는 시간 정보를 미리 요구
+  몇시에 도착해서 몇시에 떠날 것인지 알려줌 -> 피로연 장소에 동시에 존재하는 최대 인원수를 구함
+  한 친구 오는 시간 13, 가는 시간 15 -> 13시 정각에 존재, 15시 정각에는 존재 X
+  => 이상, 미만 기준
+  [오는 시간, 가는 시간]  => 시간은 0시~72시
+  [14 18] [12 15] [15 20] [20 30]
+
+  # 내 풀이
+  [정렬 부분]
+  회의실 예약 문제와 흡사 => 같은 시간이 주어질 수 있으니 2가지 경우로 나눠서 정렬 시도
+  1. 오는 시간 === 가는 시간 -> 오는 시간으로 정렬
+  2. 오는 시간 !== 가는 시간 -> 가는 시간으로 정렬
+  times.sort((a, b) => {
+    if(a[1]===b[1]) return a[0]-b[0];
+    else return a[1]-b[1];
+  })
+  =>  [5, 14][12, 15][14, 18][15, 20][20, 30] 이렇게 정렬이 됨
+
+  [탐색 부분]
+  0. answer 배열로 만들어서 각 시간대에 겹치는 사람 저장
+  1. 현재 탐색하고 있는 요소의 시작시간과 끝시간 사이에 다음 요소의 시작 시간이 포함된다면 cnt++
+  2. 하나의 요소 탐색 완료 시, 카운트한 것 answer배열에 push
+  3. 모든 요소 다 탐색하면 answer배열 중 최대값 리턴 Math.max(...answer);
+
+
+  # 강의 풀이
+  - time_line이라는 배열을 만들고, 한 사람을 2개의 이벤트로 나눔
+  - [도착한 시간, "s"], [떠나는 시간, "e"]
+  - 도착한 시간&떠나는 시간을 새 배열의 0번째 인덱스에 넣어서 한꺼번에 오름차순 정렬
+  - 1번째 정렬은 s, e 두가지만 들어갈 수 있는데, s를 만나면 cnt++, e를 만나면 cnt--
+  - 5  s 1
+    12 s 2
+    14 e 1
+    14 s 2
+    15 e 1
+    15 s 2
+    ...
+function solution(times){
+    let answer=Number.MIN_SAFE_INTEGER;
+    let T_line=[];
+   // 1. T_line -> times의 각 요소의 0번째는 s, 1번째는 e
+    for(let x of times){
+        T_line.push([x[0], 's']);
+        T_line.push([x[1], 'e']);
+    }
+   // 2. T_line 시간순 정렬, 시간 같으면 1번째 아스키코드 변환해서 정렬
+    T_line.sort((a, b)=>{
+        if(a[0]===b[0]) return a[1].charCodeAt()-b[1].charCodeAt();
+        else return a[0]-b[0];
+    });
+    let cnt=0;
+  // 3. s만나면 cnt++, e만나면 cnt--, cnt바뀔 때마다 => answer 갱신
+    for(let x of T_line){
+        if(x[1]==='s') cnt++;
+        else cnt--;
+        answer=Math.max(answer, cnt);
+    }
+    return answer;
+}
+
+# 처음으로 강의 알고리즘보다 내 알고리즘이 더 맘에 든다고 생각됨
+ -->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(times) {
+        let answer = [];
+        let cnt = 0;
+        times.sort((a, b) => {
+          if (a[1] === b[1]) return a[0] - b[0];
+          else return a[1] - b[1];
+        });
+        for (let i = 0; i < times.length; i++) {
+          cnt = 0;
+          for (let j = 0; j < times.length; j++) {
+            if (times[i][0] <= times[j][0] && times[i][1] > times[j][0]) {
+              cnt++;
+            }
+          }
+          answer.push(cnt);
+        }
+
+        return Math.max(...answer);
+      }
+
+      let arr = [
+        [14, 18],
+        [12, 15],
+        [15, 20],
+        [20, 30],
+        [5, 14],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
