@@ -1,4 +1,5 @@
 # 이진 탐색 알고리즘(binary search)
+![image](https://user-images.githubusercontent.com/70371342/219529494-94fb128d-1fef-4075-b8b8-258fcee23db2.png)
 
 - 데이터가 정렬돼 있는 배열에서 특정한 값을 찾아내는 알고리즘
 - 가운데에 있는 항목을 키값과 비교하여 다음 탐색 위치를 결정하여 키를 찾을 때까지 이진 탐색을 반복적으로 수행
