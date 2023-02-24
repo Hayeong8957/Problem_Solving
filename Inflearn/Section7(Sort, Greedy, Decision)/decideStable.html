@@ -1,0 +1,73 @@
+<!-- 마구간 정하기(결정알고리즘) 
+N개의 마구간 수직선상, x1, x2, x3...xN의 좌표를 가짐,
+좌표 중복되는 일 없음
+C마리의 말, 서로 가까이 있는 거 싫어. 각 마구간 한 마리 말만 넣어, 가장 가까운 두 말의 거리 최대
+C마리의 말을 N개의 마구간에 배치할 때, 가장 가까운 두 말의 거리가 최대가 되는 최대값 출력
+C, 마구간 좌표 차례로 주어짐
+3마리의 말을 stable.length개의 마구간에 배치하고자함
+
+0. 좌표 계산 필요 -> 오름차순 정렬 1,2,4,8,9 
+-> 두 말의 최대 거리는 1~9 사이
+
+1. 초기엔 양쪽 맨 끝자리들, 
+lt=1, rt=9 mid=(rt - lt)/2 = 5  ====> 두 말의 최대 거리 : 5
+  1-1. 두 말의 거리가 5 이상인 말 총 몇마리인지 cnt
+      말이 들어간 위치를 end_point에 넣음(가장 최근에 말이 들어간 자리 체크), 
+      -> 바로 전 말이 들어간 마구간을 체크하기 위해
+  1-2. 1,2,4,8,9에서 1번, 8번 밖에 안됨(X)
+  
+  2. mid-1해서 rt가 4일 때
+  2-1. lt=1, rt=4, mid=(rt-lt)/2=2 =====> 두 말의 최대 거리:2
+  2-2. 1, 4, 8 모두 들어있다. (O) => answer 이제 2
+
+  3. 최대를 찾아야하므로, 2~4까지 이분탐색
+  lt가 rt보다 커질때까지, 이분탐색 끝까지
+  
+1. Count 함수로 리턴된 값이 말의 수
+2. c보다 크거나 같다면 c마리의 말을 넣을 수 있다.
+3. c보다 작다면 최대로 넣을 수 있는 말의 수 => c마리를 넣을 수 없다.
+4. 이분탐색에서 범위를 mid위로 다시 정하면 됨
+5. count 함수 내에서는 첫번째 마구간에 말 한마리를 넣어두고 시작, 
+인덱스 0, ep=stable[0], cnt=1로 잡아둠
+-->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function count(stable, dist) {
+        let cnt = 1,
+          end_pos = stable[0];
+        for (let i = 1; i < stable.length; i++) {
+          if (stable[i] - end_pos >= dist) {
+            cnt++;
+            end_pos = stable[i];
+          }
+        }
+        return cnt;
+      }
+      function solution(c, stable) {
+        let answer;
+        // 오름차순 정렬
+        stable.sort((a, b) => a - b);
+        let lt = 1;
+        let rt = stable[stable.length - 1];
+        // 이분탐색
+        while (lt <= rt) {
+          let mid = parseInt((lt + rt) / 2);
+          // c보다 크거나 같을 때 이분탐색
+          if (count(stable, mid) >= c) {
+            answer = mid;
+            lt = mid + 1;
+          } else rt = mid - 1;
+        }
+        return answer;
+      }
+
+      let arr = [1, 2, 8, 4, 9];
+      console.log(solution(3, arr));
+    </script>
+  </body>
+</html>
