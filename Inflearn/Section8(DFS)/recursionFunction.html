@@ -1,0 +1,25 @@
+<!-- 재귀함수
+  자연수N이 입력되면 재귀함수를 이용해
+  1~N까지 출력
+ -->
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        function DFS(N) {
+          if (N == 0) return;
+          DFS(N - 1);
+          console.log(N);
+        }
+        DFS(n);
+      }
+
+      solution(3);
+    </script>
+  </body>
+</html>
