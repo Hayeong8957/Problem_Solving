@@ -14,27 +14,37 @@
 
 - 모든 노드가 부모의 왼쪽 자식, 왼쪽으로 편향 되어 있거나
   반대로 모든 노드가 부모의 오른쪽 자식, 오른쪽으로 편향 되어 있는 트리
-- 사진
+  
+![편향이진트리](https://user-images.githubusercontent.com/70371342/222063551-5d4fadf4-4fb8-47df-80b6-055ace9be8a3.png)
+
 
 # 포화 이진 트리(full binary tree)
 
 - 모든 노드가 자식 노드를 2개씩 다 가지고 있음 -> 각 레벨에서 이진 트리가 보유할 수 있는 최대의 노드를 가지고 있음.
 - 루트를 제외한 왼쪽은 짝수, 오른쪽은 홀수의 노드 번호를 지님
-- 사진
+
+![포화이진트리](https://user-images.githubusercontent.com/70371342/222063572-2c1da369-3fa3-4754-81d1-2d8d2ec8bbce.png)
+
 
 # 완전 이진 트리(complete binary tree)
 
 - 왼쪽부터 오른쪽까지 꽉 차서 노드의 수가 n<=(2^h-1)이라면 완전 이진 트리
-- 사진
+
+![완전이진트리](https://user-images.githubusercontent.com/70371342/222063584-332f2f71-f566-4419-beb5-4d3487c1e05f.png)
+
 
 # 이진 트리 순차 표현(배열 표현법)
 
 - 완전 이진 트리를 표현할 때 사용
 - 1차원 배열로 쉽게 표현
 - 인덱스 0은 실제 사용하지 않고 인덱스 1은 항상 루트 노드를 나타낸다.
-- 사진1
+
+![이진트리의 순차표현1](https://user-images.githubusercontent.com/70371342/222063609-cca33792-3959-4698-83cc-c2aa991c9b89.png)
+
 - 편향 이진 트리일 경우 메모리 공간의 낭비
-- 사진2
+
+![이진트리의 순차표현2](https://user-images.githubusercontent.com/70371342/222063629-9084b023-e358-47b1-935f-dd2630f265dd.png)
+
 
 ## 완전 이진 트리를 표현한 1차원 배열에서 인덱스 관계
 
@@ -50,12 +60,16 @@
 - 저장 공간 효율적으로 사용하기 위해 링크드리스트 표현 사용
 - 각 노드: left(왼쪽 서브 트리), data, right(오른쪽 서브 트리)을 포함하는 구조 가짐
 - 각 노드를 방문할 수 있는 방법은 루트 노드 최상위에서 아래로 접근하기 때문에 이전 노드에 대한 정보는 필요 없고, 자식 노드에 대한 정보만 필요.
-- 사진1
+
+![이진트리 연결표현 노드 하나 구조](https://user-images.githubusercontent.com/70371342/222063655-3b0a070f-2ac2-434c-b7e6-8679f720c97a.png)
+
 
 ## 완전 이진 트리를 연결 표현으로 나타낸 것
 
 - left와 right는 왼쪽 서브트리와 오른쪽 서브트리를 가리키는 포인터 필드, 서브트리가 공백이면 해당 노드는 null
-- 사진2
+
+![이진트리 연결표현](https://user-images.githubusercontent.com/70371342/222063680-ef016c57-65b0-4bf5-86fe-a44d07d4b3dd.png)
+
 
 # 이진트리의 기본 순회(DFS)
 
@@ -67,21 +81,27 @@
 ## 1. 전위순회(preorder traversal)
 
 - 루트 -> 왼 -> 오
-- 사진
+
+![전위순회](https://user-images.githubusercontent.com/70371342/222063709-03d4178b-e30e-4e8a-b1c3-9916ed1807f6.png)
+
 - 출력: A-B-D-H-E-I-J-C-F-G-K
 
 ## 2. 중위순회(inorder traversal)
 
 - 왼 -> 루트 -> 오
 - 만약 자기 자신에게 왼쪽 노드가 있다면 자기 처리를 미루고 왼쪽부터 이동 후 루트 이동 후 오른쪽 이동
-- 사진
+
+![중위순회](https://user-images.githubusercontent.com/70371342/222063725-138d74e5-1a28-4736-b489-5464396d1c51.png)
+
 - 출력: H-D-B-I-E-J-A-F-C-G-K
 
 ## 3. 후위순회(postorder traversal)
 
 - 왼 -> 오 -> 루트
 - 만약 자기 자신에게 왼쪽 노드가 있다면 자기 처리를 미루고 왼쪽부터 이동 후 오른쪽 이동 후 루트 이동
-- 사진
+
+![후위순회](https://user-images.githubusercontent.com/70371342/222063741-d72ce9c8-b2aa-413e-99de-5d2c5c9b0f37.png)
+
 - 출력: H-D-I-J-E->B->F->K->G->C->A
 
 # 레벨순회(큐 기반)
