@@ -14,9 +14,8 @@
 
 - 모든 노드가 부모의 왼쪽 자식, 왼쪽으로 편향 되어 있거나
   반대로 모든 노드가 부모의 오른쪽 자식, 오른쪽으로 편향 되어 있는 트리
-  
-![편향이진트리](https://user-images.githubusercontent.com/70371342/222063551-5d4fadf4-4fb8-47df-80b6-055ace9be8a3.png)
 
+![편향이진트리](https://user-images.githubusercontent.com/70371342/222063551-5d4fadf4-4fb8-47df-80b6-055ace9be8a3.png)
 
 # 포화 이진 트리(full binary tree)
 
@@ -25,13 +24,11 @@
 
 ![포화이진트리](https://user-images.githubusercontent.com/70371342/222063572-2c1da369-3fa3-4754-81d1-2d8d2ec8bbce.png)
 
-
 # 완전 이진 트리(complete binary tree)
 
 - 왼쪽부터 오른쪽까지 꽉 차서 노드의 수가 n<=(2^h-1)이라면 완전 이진 트리
 
 ![완전이진트리](https://user-images.githubusercontent.com/70371342/222063584-332f2f71-f566-4419-beb5-4d3487c1e05f.png)
-
 
 # 이진 트리 순차 표현(배열 표현법)
 
@@ -44,7 +41,6 @@
 - 편향 이진 트리일 경우 메모리 공간의 낭비
 
 ![이진트리의 순차표현2](https://user-images.githubusercontent.com/70371342/222063629-9084b023-e358-47b1-935f-dd2630f265dd.png)
-
 
 ## 완전 이진 트리를 표현한 1차원 배열에서 인덱스 관계
 
@@ -63,13 +59,11 @@
 
 ![이진트리 연결표현 노드 하나 구조](https://user-images.githubusercontent.com/70371342/222063655-3b0a070f-2ac2-434c-b7e6-8679f720c97a.png)
 
-
 ## 완전 이진 트리를 연결 표현으로 나타낸 것
 
 - left와 right는 왼쪽 서브트리와 오른쪽 서브트리를 가리키는 포인터 필드, 서브트리가 공백이면 해당 노드는 null
 
 ![이진트리 연결표현](https://user-images.githubusercontent.com/70371342/222063680-ef016c57-65b0-4bf5-86fe-a44d07d4b3dd.png)
-
 
 # 이진트리의 기본 순회(DFS)
 
@@ -86,6 +80,15 @@
 
 - 출력: A-B-D-H-E-I-J-C-F-G-K
 
+```
+function preorder(v) {
+  if (v >= 8) return;        // 종점; 8이상이 되면 종료
+  answer += v + '';          // 루트 출력
+  preorder(n * 2);           // 왼쪽 이동
+  preorder(n * 2 + 1);       // 오른쪽 이동
+}
+```
+
 ## 2. 중위순회(inorder traversal)
 
 - 왼 -> 루트 -> 오
@@ -95,6 +98,15 @@
 
 - 출력: H-D-B-I-E-J-A-F-C-G-K
 
+```
+function inorder(v) {
+  if (v >= 8) return;        // 종점; 8이상이 되면 종료
+  preorder(n * 2);           // 왼쪽 이동
+  answer += v + '';          // 루트 출력
+  preorder(n * 2 + 1);       // 오른쪽 이동
+}
+```
+
 ## 3. 후위순회(postorder traversal)
 
 - 왼 -> 오 -> 루트
@@ -103,6 +115,15 @@
 ![후위순회](https://user-images.githubusercontent.com/70371342/222063741-d72ce9c8-b2aa-413e-99de-5d2c5c9b0f37.png)
 
 - 출력: H-D-I-J-E->B->F->K->G->C->A
+
+```
+function postorder(v) {
+  if (v >= 8) return;        // 종점; 8이상이 되면 종료
+  preorder(n * 2);           // 왼쪽 이동
+  preorder(n * 2 + 1);       // 오른쪽 이동
+  answer += v + '';          // 루트 출력
+}
+```
 
 # 레벨순회(큐 기반)
 
