@@ -1,0 +1,52 @@
+<!-- 부분집합 구하기
+자연수 N이 주어지면 1부터 N까지의 원소를 갖는 집합의 부분집합을 모두 출력
+입력 ) 3
+출력 ) 1 2 3
+      1 2
+      1 3
+      1
+      2 3
+      2
+      3
+- 각 자리의 숫자는 참여할수도, 참여 안 할수도 있다.
+- 이진트리로 부분집합을 구할 수 있다.
+
+-->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let answer = [];
+        // check배열, n번까지 개체가 생성되어야 하니 n+1
+        const check = Array.from({ length: n + 1 }, () => 0);
+        console.log(check);
+        function DFS(x) {
+          if (x === n + 1) {
+            let tmp = '';
+            for (let i = 1; i <= n; i++) {
+              // 체크된 것들만 출력
+              if (check[i] === 1) tmp += i + ' ';
+            }
+            // 공집합 해결
+            if (tmp.length > 0) answer.push(tmp.trim());
+          } else {
+            // 포함
+            check[x] = 1;
+            DFS(x + 1);
+            // 포함X
+            check[x] = 0;
+            DFS(x + 1);
+          }
+        }
+        DFS(1);
+        return answer;
+      }
+
+      console.log(solution(3));
+    </script>
+  </body>
+</html>
