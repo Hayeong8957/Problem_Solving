@@ -21,23 +21,17 @@
     <script>
       function solution(n) {
         let answer = [];
-        // check배열, n번까지 개체가 생성되어야 하니 n+1
         const check = Array.from({ length: n + 1 }, () => 0);
-        console.log(check);
         function DFS(x) {
           if (x === n + 1) {
             let tmp = '';
             for (let i = 1; i <= n; i++) {
-              // 체크된 것들만 출력
               if (check[i] === 1) tmp += i + ' ';
             }
-            // 공집합 해결
             if (tmp.length > 0) answer.push(tmp.trim());
           } else {
-            // 포함
             check[x] = 1;
             DFS(x + 1);
-            // 포함X
             check[x] = 0;
             DFS(x + 1);
           }
