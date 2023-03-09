@@ -6,11 +6,14 @@
  * 예제 입력2 : 20
  * 예제 출력2 : long long long long long int
  */
-const input = require('fs')
-  .readFileSync('/dev/stdin')
-  .toString()
-  .trim()
-  .split('\n');
+// const input = require('fs')
+//   .readFileSync('/dev/stdin')
+//   .toString()
+//   .trim()
+//   .split('\n');
+
+const input = 20;
+
 const N = Number(input);
 
 const answer = [];
