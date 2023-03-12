@@ -150,13 +150,13 @@ setItem = (key, value) => {
 setItem은 key와 value쌍으로 데이터를 집어넣어 준다.
 그런데 **array는 인덱스 숫자로만 접근할 수 있다.**
 따라서 string값을 해시 테이블에 넣어주려면 **string 자료형을 number 자료형으로 바꾸어서 해당 number인덱스에 데이터를 저장하도록 해야 한다.**
-이렇게 해시 테이블의 키를 number 자료형으로 만드는 어떤 함수를 **해시함수(Hash function)**이라고 한다.
+이렇게 해시 테이블의 키를 number 자료형으로 만드는 어떤 함수를 **해시함수(Hash function)** 라고 한다.
 
 ## 2. 해시 함수가 필요한 이유
 
 ```javascript
 function hashStringToInt(s) {
-  return s;
+  return  Number(s);
 }
 ```
 
@@ -187,7 +187,7 @@ newTable.setItem("firstName", "Hayeong");
 console.log(newTable.getItem("firstName")); // Hayeong
 ```
 
-이렇게 firstName이 드디러 Hayeong으로 리턴이 된다.
+이렇게 firstName이 드디어 Hayeong으로 리턴이 된다.
 그런데 위에서 만들어 둔 해시 함수는 항상 5를 리턴하기 때문에 어떤 값을 setItem으로 table에 저장해도 같은 인덱스 3에 덮어씌워 저장이 될 것이다.
 
 ```javascript
