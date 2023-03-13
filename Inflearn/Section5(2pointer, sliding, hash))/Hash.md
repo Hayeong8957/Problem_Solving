@@ -27,12 +27,12 @@ person['lastName'] = 'Shin';
 - 배열에서는 key값에 숫자만 가능하지만, Hash Table에서는 문자열 또한 Key 가능, Map에서는 함수도 가능
 - Hash Function을 통해 빠른 탐색이 가능 → **O(1)**
   ![image](https://user-images.githubusercontent.com/70371342/213849405-c60b3f5f-424d-462d-98f3-beaac0154f1d.png)
-
-# 해시 테이블: Hash Map
-
-JavaScript에서 해시 테이블은 대표적으로 Object, Map, Set이 있다.
-key-value로 이루어진 자료구조는 Object가 대표적이었지만, ES6에서 Map과 Set이 추가 되었다
+- JavaScript에서 해시 테이블은 대표적으로 Object, Map, Set이 있다.
+- key-value로 이루어진 자료구조는 Object가 대표적이었지만, ES6에서 Map과 Set이 추가 되었다
 [Map & Set 객체 설명 - Deep Dive](https://steep-agreement-07d.notion.site/CH37-Set-Map-1047efb4a4c1412aa84046f326336a3a)
+
+> **💡 집합 개념인 Set도 해시 테이블의 일종이라 볼 수 있다. 
+대신 Map과 가장 큰 차이점이라면 key-value가 동일한 값으로 저장된다는 점이다.**
 
 # Map객체
 
