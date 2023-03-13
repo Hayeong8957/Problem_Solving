@@ -114,7 +114,7 @@ for (let value of map.values()) {
 
 # Hash 이용한 알고리즘 문제 예제
 
-### [학급회장](https://github.com/Hayeong8957/Problem_Solving/blob/main/Inflearn/Section5(2pointer%2C%20sliding%2C%20hash))/classPresident.html)
+### [학급회장](https://github.com/Hayeong8957/Problem_Solving/blob/main/Inflearn/Section5(2pointer%2C%20sliding%2C%20hash)/classPresident.html)
 
 # 추가) Hash Table생성, 해시 함수 작성, 충돌
 
