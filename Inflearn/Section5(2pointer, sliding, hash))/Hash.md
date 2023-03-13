@@ -9,13 +9,14 @@ ex) 전화번호부(이름-key, 번호-value), Hash가 없던 시절 -> 배열 f
 - 해시 함수 과정에서 [해시충돌](https://ko.wikipedia.org/wiki/%ED%95%B4%EC%8B%9C_%EC%B6%A9%EB%8F%8C)(서로 다른 두 개의 입력값에 대해 동일한 출력값을 내는 상황) 이 일어날 수 있다
 
 ### 언제 해시를 써야할까?
+
 - **String을 기반으로 정보를 기록하고 관리해야 할 때**
-ex) 완주하지 못한 선수 문제 : 선수 이름(key;string) -> 완주 여부(value;boolean)
+  ex) 완주하지 못한 선수 문제 : 선수 이름(key;string) -> 완주 여부(value;boolean)
 
 ```javascript
 const person = {};
-person["firstName"] = "Hayeong";
-person["lastName"] = "Shin";
+person['firstName'] = 'Hayeong';
+person['lastName'] = 'Shin';
 ```
 
 이렇게 키와 값의 형태로 데이터를 저장하는 구조를 자바스크립트의 object나 map으로 구현할 수 있다.
@@ -33,7 +34,6 @@ JavaScript에서 해시 테이블은 대표적으로 Object, Map, Set이 있다.
 key-value로 이루어진 자료구조는 Object가 대표적이었지만, ES6에서 Map과 Set이 추가 되었다
 [Map & Set 객체 설명 - Deep Dive](https://steep-agreement-07d.notion.site/CH37-Set-Map-1047efb4a4c1412aa84046f326336a3a)
 
-
 # Map객체
 
 - key-value로 이루어진 해시 테이블
@@ -50,17 +50,16 @@ let number = 0;
 let str = 'string';
 let obj = { a: 1 };
 let fnc = () => {
-    console.log('fnc');
+  console.log('fnc');
 };
 
 map.set(number, 4); //key에 number 가능
-map.set(str, 1);    // key에 string 가능
-map.set(obj, 2);    //key에 object 가능
-map.set(fnc, 3);    // key에 함수 가능
+map.set(str, 1); // key에 string 가능
+map.set(obj, 2); //key에 object 가능
+map.set(fnc, 3); // key에 함수 가능
 map.set(number, 0); // 덮어쓰기 가능
 
-console.log(map);   // Map(4) {0 => 0, "string" => 1, {…} => 2, ƒ => 3}
-
+console.log(map); // Map(4) {0 => 0, "string" => 1, {…} => 2, ƒ => 3}
 ```
 
 ## value 얻기: get()
@@ -90,8 +89,8 @@ map.get('none'); // false
 ## value 존재유무: size
 
 ```javascript
-map.size // 4
-map.length // undefined
+map.size; // 4
+map.length; // undefined
 ```
 
 ## hash 탐색: for~of 문
@@ -99,19 +98,23 @@ map.length // undefined
 ```javascript
 //key, value 쌍으로 출력
 for (let [key, value] of map) {
-  console.log(key + ' = ' + value)
+  console.log(key + ' = ' + value);
 }
 
 //key만 출력
 for (let key of map.keys()) {
-  console.log(key)
+  console.log(key);
 }
 
 //value만 출력
 for (let value of map.values()) {
-  console.log(value)
+  console.log(value);
 }
 ```
+
+# Hash 이용한 알고리즘 문제 예제
+
+### [학급회장]
 
 # 추가) Hash Table생성, 해시 함수 작성, 충돌
 
@@ -122,8 +125,8 @@ class HashTable {
   table = new Array(100);
   setItem = (key, value) => {};
   getItem = (key) => {
-    return "";
-    };
+    return '';
+  };
 }
 ```
 
@@ -134,10 +137,10 @@ getItem에서는 key를 파라미터로 받아 table의 key에 맞는 value를 �
 
 ```javascript
 const newTable = new HashTable();
-newTable.setItem("firstName", "Hayeong");
-newTable.getItem("firstName");
+newTable.setItem('firstName', 'Hayeong');
+newTable.getItem('firstName');
 
-console.log(newTable.getItem("firstName")); // [empty string]
+console.log(newTable.getItem('firstName')); // [empty string]
 ```
 
 newTable을 생성자 함수로 만든 후 setItem으로 "firstName"키에 "Hayeong"값을 넣어주고, getItem으로 "firstName"키에 대한 값을 불러와 본다.
@@ -145,8 +148,8 @@ newTable을 생성자 함수로 만든 후 setItem으로 "firstName"키에 "Haye
 
 ```javascript
 setItem = (key, value) => {
-  table["firstName"] = "Hayeong";   // 잘못된 예시
-}
+  table['firstName'] = 'Hayeong'; // 잘못된 예시
+};
 ```
 
 setItem은 key와 value쌍으로 데이터를 집어넣어 준다.
@@ -158,7 +161,7 @@ setItem은 key와 value쌍으로 데이터를 집어넣어 준다.
 
 ```javascript
 function hashStringToInt(s) {
-  return  Number(s);
+  return Number(s);
 }
 ```
 
@@ -184,9 +187,9 @@ getItem에서도 값을 가져오기 원하는 key를 해시 함수로 변환해
 
 ```javascript
 const newTable = new HashTable();
-newTable.setItem("firstName", "Hayeong");
+newTable.setItem('firstName', 'Hayeong');
 
-console.log(newTable.getItem("firstName")); // Hayeong
+console.log(newTable.getItem('firstName')); // Hayeong
 ```
 
 이렇게 firstName이 드디어 Hayeong으로 리턴이 된다.
@@ -194,10 +197,10 @@ console.log(newTable.getItem("firstName")); // Hayeong
 
 ```javascript
 const newTable = new HashTable();
-newTable.setItem("firstName", "Hayeong");
-newTable.setItem("lastName", "Shin");
+newTable.setItem('firstName', 'Hayeong');
+newTable.setItem('lastName', 'Shin');
 
-console.log(newTable.getItem("firstName")); // Shin
+console.log(newTable.getItem('firstName')); // Shin
 ```
 
 이렇게 lastName키에 Shin값을 넣어 줬는데, firstName을 꺼내보니 Shin이 나온다.
@@ -214,7 +217,7 @@ console.log(newTable.getItem("firstName")); // Shin
 function hashStringToInt(s) {
   let hash = 17;
 
-  for(let i = 0; i < s.length; i++) {
+  for (let i = 0; i < s.length; i++) {
     hash = hash * s.charCodeAt(i);
   }
   return hash;
