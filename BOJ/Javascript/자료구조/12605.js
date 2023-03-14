@@ -45,3 +45,17 @@ for (let i = 0; i < n; i++) {
   }
   console.log(`Case #${i + 1}: ${answer.join(' ')}`);
 }
+
+// for (let i = 0; i < n; i++) {
+//   const arr = input[i].split(' ');
+//   const stack = [];
+//   for (let j = 0; j < arr.length; j++) {
+//     stack.push(arr[j]);
+//   }
+
+//   const answer = [];
+//   while (stack.length > 0) {
+//     answer.push(stack.pop());
+//   }
+//   console.log(answer.join(' '));
+// }
