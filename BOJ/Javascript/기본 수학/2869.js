@@ -28,19 +28,32 @@
  * 999999901
  *
  * 풀이 :
- * 정상에 도착하면 미끄러지지 않고 그 즉시 끝나게 되니 정상(높이)에서 밤에 미끄러지는 수를 빼주면 된다.
- * 즉 (높이 - 밤에 미끄러지는 수) 값까지만 올라가면 된다.
+ * (while문 풀이 ======> 시간초과 )
+ * 시작지점이 정상에 다다를 때 까지 시작지점에 A 더해주고,
+ * A 더했을 때 정상이 아니면 B 빼고난 뒤 cnt올려주고,
+ * A 더했을 때 정상이면 B 뺄 필요 없으니까 cnt만 올려줌
  *
- * 그리고 아침에는 위로 이동을 하지만 밤에는 미끄러지니 결국 하루에 이동하는 값은
- * (아침에 이동하는 수 - 밤에 미끄러지는 수)가 될 것이다.
- *
- * 결과 값이 딱 떨어지지 않는 수가 나오면 하루가 더 필요하다는 뜻이므로
- * Math.ceil메서드를 사용해 올림을 해서 하루를 더해준다.
+ * (2차 풀이)
+ * 정상이면 B를 뺄 필요가 없다가 중점
+ * 달팽이새끼 하루동안 올라가는 거리 자체는 A-B임.
+ * 올라갔는데 정상이면 내려갈 일 없어.. 올라갔는데 정상이면 내려갈 일 없어..
+ * 하루 움직이는 거리 단위를 잡아서 나눠주자.
+ * 올라가는 거리 자체가 (A-B), 정상에서 B 빼주면 나눌 수 있음
+ * V-B/A-B 가 그럼 몇 일 동안 움직였는 지 알 수 있는 공식
+ * 나눴는데 소수점이 나올 수 있으니 소수점 무조건 올리는 메소드 사용
  *  */
-let input = require("fs").readFileSync("/dev/stdin").toString().split(" ");
+let [A, B, V] = require('fs')
+  .readFileSync('/dev/stdin')
+  .toString()
+  .split(' ')
+  .map(Number);
 
-const A = input[0];
-const B = input[1];
-const V = input[2];
+// let [A, B, V] = require('fs')
+// .readFileSync(
+//   'c:/Users/HayeongShin/Algorithm/Problem_Solving/BOJ/Javascript/test.txt',
+// )
+//   .toString()
+//   .split(' ')
+//   .map(Number);
 
 console.log(Math.ceil((V - B) / (A - B)));

@@ -18,21 +18,28 @@
  * 풀이 :
  * 벌집의 규칙은 1부터 시작해서 원형으로 수가 증가하는 지 확인해보니
  * 1 -> 7 -> 19 -> 37 -> 61 순서로 증가하는 것을 볼 수 있다.
- * 0 -> 6 -> 12 -> 18 -> 24 만큼씩 증가한다.
- * 1+6n수열이라는 결론에 도출
+ *   6 -> 12 -> 18 -> 24 만큼씩 증가한다.
+ * 1+6n이라는 결론에 도출
  * while문을 이용해 n을 증가시키고, 타겟값과 비교해서 출력하는 코드 작성
  *  */
 
-let fs = require("fs");
-let input = fs.readFileSync("/dev/stdin").toString().split(" ");
+// .readFileSync('/dev/stdin')
+let input = Number(
+  require('fs')
+    .readFileSync(
+      'c:/Users/HayeongShin/Algorithm/Problem_Solving/BOJ/Javascript/test.txt',
+    )
+    .toString()
+    .split(' ')[0],
+);
+console.log(input);
+let room = 1; // 방
+let sum = 1; // 계속 더해줄 것
 
-const num = parseInt(input[0]);
-
-let increaseNum = 1;
-let i = 1;
-
-while (num > i) {
-  i += increaseNum * 6;
-  increaseNum++;
+while (input > sum) {
+  sum += room * 6;
+  room++;
+  // console.log(`room: ${room}, sum: ${sum}`);
 }
-console.log(increaseNum);
+
+console.log(room);
