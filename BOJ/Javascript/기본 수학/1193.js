@@ -66,6 +66,42 @@
  *  */
 
 // let input = require('fs').readFileSync('/dev/stdin').toString().trim();
+// let N = Number(
+//   require('fs')
+//     .readFileSync(
+//       'c:/Users/HayeongShin/Algorithm/Problem_Solving/BOJ/Javascript/test.txt',
+//     )
+//     .toString()
+//     .trim(),
+// );
+// let depth = 1;
+// let a = 0,
+//   b = 0;
+
+// 입력받은 숫자 depth구하기
+// 현재 depth수 = 해당 depth에 있는 분수의 수
+// 숫자를 받았을 때 depth를 늘려가면서 빼주면
+// 몇 번째 depth에 몇 번째 분수인 지 구할 수 있음
+// while (N > depth) {
+//   if (depth < 0) break;
+//   N -= depth;
+//   depth++;
+// }
+// N = 5를 예시로 들었을 때
+// (N, depth)
+// 초기: (5, 1)
+// while 시작 (4, 2) (2, 3)  ====>  3번째 대각선의 2번째 분수
+
+// if (depth % 2 === 1) {
+//   a = depth - N + 1;
+//   b = N;
+// } else {
+//   a = N;
+//   b = depth - N + 1;
+// }
+
+// console.log(`${a}/${b}`);
+
 let N = Number(
   require('fs')
     .readFileSync(
@@ -75,30 +111,12 @@ let N = Number(
     .trim(),
 );
 let depth = 1;
-let a = 0,
-  b = 0;
 
-// 입력받은 숫자 depth구하기
-// 현재 depth수 = 해당 depth에 있는 분수의 수
-// 숫자를 받았을 때 depth를 늘려가면서 빼주면
-// 몇 번째 depth에 몇 번째 분수인 지 구할 수 있음
 while (N > depth) {
   if (depth < 0) break;
   N -= depth;
   depth++;
-  // console.log(`(${N}, ${depth})`);
 }
-// N = 5를 예시로 들었을 때
-// (N, depth)
-// 초기: (5, 1)
-// while 시작 (4, 2) (2, 3)  ====>  3번째 대각선의 2번째 분수
-
-if (depth % 2 === 1) {
-  a = depth - N + 1;
-  b = 1 + N - 1;
-} else {
-  a = 1 + N - 1;
-  b = depth - N + 1;
-}
-
-console.log(`${a}/${b}`);
+console.log(
+  depth % 2 === 1 ? `${depth - N + 1}/${N}` : `${N}/${depth - N + 1}`,
+);
