@@ -37,9 +37,10 @@ let room = 1; // 방
 let sum = 1; // 계속 더해줄 것
 
 while (input > sum) {
+  console.log(`room: ${room}, sum: ${sum}`);
   sum += room * 6;
   room++;
-  // console.log(`room: ${room}, sum: ${sum}`);
 }
+console.log(`room: ${room}, sum: ${sum}`);
 
 console.log(room);

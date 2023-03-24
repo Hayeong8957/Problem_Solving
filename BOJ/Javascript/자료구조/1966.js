@@ -56,6 +56,16 @@
 조건을 만족하는 값이 발견되면 그 즉시 순회 중단
 내부 원소 한 개라도 만족 true 출력시 순회 끝
 
+some(function(element, index, array) {}) 
+- element : 현재 처리 중인 요소
+- index : 현재 처리 중인 요소의 인덱스
+- array : 호출된 배열
+=====> some()메소드는 true, false를 반환
+=====> 콜백함수 내부에는 해당 값에 대한 조건을 작성
+
+[2, 5, 8, 1, 4].some((x) => x > 10);  // false
+[12, 5, 8, 1, 4].some((x) => x > 10); // true
+
  */
 
 let arr = require('fs')
@@ -71,28 +81,38 @@ let arr = require('fs')
 
 arr.shift();
 arr = arr.map((item) => item.split(' ').map(Number));
-let count = 0;
-// 짝수번째는 [배열 갯수, 위치] 홀수번짼 [문서 중요도]
-for (let i = 0; i < arr.length; i++) {
-  let location = arr[i][1];
+// console.log(arr);
+// [
+//   [ 1, 0 ],
+//   [ 5 ],
+//   [ 4, 2 ],
+//   [ 1, 2, 3, 4 ],
+//   [ 6, 0 ],
+//   [ 1, 1, 9, 1, 1, 1 ]
+// ]
+
+// 첫번째 줄은 [배열 갯수, 위치] 두번째 줄은 [문서 중요도]
+for (let i = 0; i < arr.length; i += 2) {
+  let location = arr[i][1]; // 첫번째 줄의 두번째가 위치 나타내는 data
   let inputArr = arr[i + 1];
-  i++;
+  //i++; // (0, 1) (2, 3) (4, 5) ...
   // console.log('위치: ', location);
   // console.log('중요도 배열: ', inputArr);
 
   // inputArr 배열 각 요소마다 해당 요소 인덱스를 쌍으로 하는 배열 만듦.
-  // [[2, 0], [1, 1], [3, 2], [4, 3]]
+  // [ [ 1, 0 ], [ 2, 1 ], [ 3, 2 ], [ 4, 3 ] ]
   let queue = inputArr.map((priority, idx) => [priority, idx]);
+  // console.log('queue: ', queue);
   let cnt = 0;
 
-  while (queue.length > 0) {
+  while (queue.length) {
     // queue의 첫 요소 꺼내서 나머지 애들과 비교
-    // [2, 0] ===> priority=2, idx=0
+    // [1, 0] ===> priority=1, idx=0
     let [priority, idx] = queue.shift();
 
-    // queue배열의 나머지 요소들 0번째 인덱스의 값과
-    // 현재 꺼낸 priority값과 비교
-    // 큰 값 있으면 꺼냈던 아이 다시 queue에 push
+    // queue배열의 나머지 요소들 0번째 인덱스의 값과 [[2, 1], [3, 2], [4, 3]]  | 1 vs 2, 3, 4
+    // 현재 꺼낸 priority값과 비교 =====> 남아있는 배열 중에 하나라도 큰 값이 있으면 true반환, 순회 종료
+    // 큰 값 있으면 꺼냈던 아이 다시 queue에 push   [[2, 1], [3, 2], [4, 3], [1, 0]]
     if (queue.some((arrValue) => arrValue[0] > priority)) {
       queue.push([priority, idx]);
     } else {

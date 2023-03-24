@@ -44,47 +44,52 @@ const N = Number(
     .trim()
     .split('\n'),
 );
+// 하나의 노드를 표현하는 class
 class Node {
   constructor(value) {
-    this.value = value;
-    this.next = null;
-    this.prev = null;
+    this.value = value; // 노드가 저장하는 값
+    this.next = null; // 다음 노드를 가리키는 포인터
   }
 }
 
+// 연결 리스트를 표현하는 class
 class LinkedList {
   constructor() {
-    this.head = null;
-    this.tail = null;
-    this._size = 0;
+    this.head = null; // 첫번째 노드를 가리키는 포인터
+    this.tail = null; // 마지막 노드를 가리키는 포인터
+    this._size = 0; // 연결리스트에 저장된 노드의 수
   }
 
+  // 노드 추가
   add(value) {
-    const newNode = new Node(value);
+    const newNode = new Node(value); // 새 노드를 만들고
 
     if (!this.head) {
-      this.head = newNode;
+      // 첫번째 노드가 없다면, linked list가 비어있다는 뜻
+      this.head = newNode; // head를 새 노드로 설정
     } else {
-      this.tail.next = newNode;
-      newNode.prev = this.tail;
+      // 그렇지 않으면
+      this.tail.next = newNode; // tail노드의 next를 새로운 노드로 설정
     }
 
-    this.tail = newNode;
-    this._size++;
+    this.tail = newNode; // tail노드를 새로운 노드로 설정
+    this._size++; // size ++
 
-    return newNode;
+    return newNode; // 새로 추가된 노드 반환
   }
 
+  // linked lisd의 첫 번째 노드의 값을 반환하는 메서드
   getHead() {
     return this.head.value;
   }
 
+  // linked list의 첫 번째 노드를 제거하는 메서드
   removeHead() {
-    this.head = this.head.next;
-    this.head.prev = null;
-    this._size--;
+    this.head = this.head.next; // head를 다음 노드로 설정
+    this._size--; // size 1 감소
   }
 
+  // 저장된 노드의 수를 반환하는 메서드
   getSize() {
     return this._size;
   }
