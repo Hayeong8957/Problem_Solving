@@ -14,6 +14,7 @@ input[3] 10 9 -5 2 3 4 5 -10
 1 0 0 1 1 0 0 1
  */
 
+/* 첫번째 풀이 -> set사용
 const input = require('fs')
   .readFileSync('/dev/stdin')
   .toString()
@@ -33,3 +34,50 @@ for (let x of M_list) {
 
 console.log(answer.join(' '));
 // 10011001
+*/
+
+const input = require('fs')
+.readFileSync(
+  '/Users/shinhayeong/Problem_Solving/BOJ/Javascript/test.txt'
+)
+  // .readFileSync('/dev/stdin')
+  .toString()
+  .trim()
+  .split('\n');
+
+const N_list = input[1]
+  .split(' ')
+  .map(Number)
+  .sort((a, b) => a - b);
+console.log(N_list)
+
+const M_list = input[3].split(' ').map(Number);
+// console.log(M_list)
+const answer = [];
+
+for (let x of M_list) {
+  let start = 0;
+  let end = N_list.length - 1;
+  let found = false;
+
+  while (start <= end) {
+    let mid = parseInt((start + end) / 2);
+
+    if (N_list[mid] === x) {
+      found = true;
+      break;
+    } else if (N_list[mid] < x) {
+      start = mid + 1;
+    } else {
+      end = mid - 1;
+    }
+  }
+
+  if (found) {
+    answer.push(1);
+  } else {
+    answer.push(0);
+  }
+}
+
+console.log(answer.join(' '));

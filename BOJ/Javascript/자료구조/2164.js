@@ -37,7 +37,7 @@ console.log(queue.pop());
 const N = Number(
   require('fs')
     .readFileSync(
-      'c:/Users/HayeongShin/Algorithm/Problem_Solving/BOJ/Javascript/test.txt',
+      '/Users/shinhayeong/Problem_Solving/BOJ/Javascript/test.txt',
     )
     // .readFileSync('/dev/stdin')
     .toString()
@@ -99,6 +99,7 @@ let queue = new LinkedList();
 for (let i = 1; i <= N; i++) {
   queue.add(i);
 }
+console.log(queue)
 while (queue.getSize() > 1) {
   queue.removeHead();
   queue.add(queue.getHead());
