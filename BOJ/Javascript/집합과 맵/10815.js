@@ -52,28 +52,55 @@ const N_list = input[1]
 console.log(N_list)
 
 const M_list = input[3].split(' ').map(Number);
-// console.log(M_list)
 const answer = [];
 
-for (let x of M_list) {
-  let start = 0;
-  let end = N_list.length - 1;
-  let found = false;
+// 1. 반복문으로 구현
+// for (let x of M_list) {
+//   let start = 0;
+//   let end = N_list.length - 1;
+//   let found = false;
 
-  while (start <= end) {
-    let mid = parseInt((start + end) / 2);
+//   while (start <= end) {
+//     let mid = parseInt((start + end) / 2);
 
-    if (N_list[mid] === x) {
-      found = true;
-      break;
-    } else if (N_list[mid] < x) {
-      start = mid + 1;
-    } else {
-      end = mid - 1;
-    }
+//     if (N_list[mid] === x) {
+//       found = true;
+//       break;
+//     } else if (N_list[mid] < x) {
+//       start = mid + 1;
+//     } else {
+//       end = mid - 1;
+//     }
+//   }
+
+//   if (found) {
+//     answer.push(1);
+//   } else {
+//     answer.push(0);
+//   }
+// }
+
+// console.log(answer.join(' '));
+
+// 2. 재귀로 구현
+function binarySearch(start, end, target) {
+  if (start > end) {
+    return false;
   }
 
-  if (found) {
+  let mid = parseInt((start + end) / 2);
+
+  if (N_list[mid] === target) {
+    return true;
+  } else if (N_list[mid] < target) {
+    return binarySearch(mid + 1, end, target);
+  } else {
+    return binarySearch(start, mid - 1, target);
+  }
+}
+
+for (let x of M_list) {
+  if (binarySearch(0, N_list.length - 1, x)) {
     answer.push(1);
   } else {
     answer.push(0);
