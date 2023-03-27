@@ -18,12 +18,12 @@
 출력: 3
 
 풀이 : 인덱스 0부터 1씩 증가하며 배열을 돌면서 합이 M이 되는지, 
-이중 for문으로 돌리기
+이중 for문으로 돌리기, i한 번 돌리면서 속에서 j로 뺑이치기
 1 2 3 4 2 5 3 1 1 2
-[1+2+3] 4 2 5 3 1 1 2 => 5초과, j++
+[1+2+3] 4 2 5 3 1 1 2 => 5초과, i++
 1 [2+3] 4 2 5 3 1 1 2 => 5동일, cnt++
-1 2 [3+4] ...         => 5초과, j++
-1 2 3 [4+2] ...       => 5초과, j++
+1 2 [3+4] ...         => 5초과, i++
+1 2 3 [4+2] ...       => 5초과, i++
  */
 const input = require('fs')
   .readFileSync('/Users/shinhayeong/Problem_Solving/BOJ/Javascript/test.txt')
@@ -40,7 +40,10 @@ for (let i = 0; i < N; i++) {
   let sum = 0;
   for (let j = i; j < N; j++) {
     sum += A[j];
-    if (sum === M) cnt++;
+    if (sum === M) {
+      cnt++;
+      break;
+    }
   }
 }
 console.log(cnt);
