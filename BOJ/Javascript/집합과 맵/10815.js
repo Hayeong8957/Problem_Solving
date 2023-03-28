@@ -25,15 +25,12 @@ const N_list = new Set(input[1].split(' '));
 const M_list = input[3].split(' ');
 const answer = [];
 
-// const N_list = new Set([6, 3, 2, 10, -10]);
-// const M_list = [10, 9, -5, 2, 3, 4, 5, -10];
 for (let x of M_list) {
   if (N_list.has(x)) answer.push(1);
   else answer.push(0);
 }
 
 console.log(answer.join(' '));
-// 10011001
 */
 
 const input = require('fs')
@@ -81,28 +78,28 @@ for (let x of M_list) {
 console.log(answer.join(' '));
 
 // 2. 재귀로 구현
-// function binarySearch(start, end, target) {
-//   if (start > end) {
-//     return false;
-//   }
+function binarySearch(start, end, target) {
+  if (start > end) {
+    return false;
+  }
 
-//   let mid = parseInt((start + end) / 2);
+  let mid = parseInt((start + end) / 2);
 
-//   if (N_list[mid] === target) {
-//     return true;
-//   } else if (N_list[mid] < target) {
-//     return binarySearch(mid + 1, end, target);
-//   } else {
-//     return binarySearch(start, mid - 1, target);
-//   }
-// }
+  if (N_list[mid] === target) {
+    return true;
+  } else if (N_list[mid] < target) {
+    return binarySearch(mid + 1, end, target);
+  } else {
+    return binarySearch(start, mid - 1, target);
+  }
+}
 
-// for (let x of M_list) {
-//   if (binarySearch(0, N_list.length - 1, x)) {
-//     answer.push(1);
-//   } else {
-//     answer.push(0);
-//   }
-// }
+for (let x of M_list) {
+  if (binarySearch(0, N_list.length - 1, x)) {
+    answer.push(1);
+  } else {
+    answer.push(0);
+  }
+}
 
-// console.log(answer.join(' '));
+console.log(answer.join(' '));
