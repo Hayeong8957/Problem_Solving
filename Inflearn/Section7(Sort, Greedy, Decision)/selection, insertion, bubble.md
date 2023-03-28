@@ -1,4 +1,5 @@
 # 선택 정렬(selection sort)
+![selectionsort](https://user-images.githubusercontent.com/70371342/228280145-0a54affe-b9c8-4cc0-aee1-390e38d56ac8.gif)
 
 - 오른쪽 리스트에서 가장 작은 숫자를 선택해서 왼쪽 리스트이 맨 뒤로 이동하는 작업 반복
 - 비효율적, 자료 이동 갯수가 정해짐, 수행시간 O(N²)
@@ -56,6 +57,8 @@ console.log(solution(arr));
 ```
 
 # 삽입 정렬(insertion sort)
+![insertionsort](https://user-images.githubusercontent.com/70371342/228280250-75c68bda-98cf-4341-a2ae-c1228f1114a4.gif)
+
 
 - 정렬된 부분과 정렬 안 된 부분으로 나뉘며, 정렬 안 된 부분의 가장 왼쪽 원소를 정렬된 부분에 “삽입”하는 방식의 정렬 알고리즘
 - 두 번째 자료부터 시작해 그 앞(왼쪽)의 자료들과 비교하여 삽입할 위치를 지정한 후 자료를 뒤로 옮기고 지정한 자리에 자료를 삽입
@@ -142,6 +145,8 @@ function solution(arr) {
 
 # 버블 정렬(bubble sort)
 
+![bubble-sort-001](https://user-images.githubusercontent.com/70371342/228280626-15a3c7ec-28a9-4ec1-93fa-6838f6fb3831.gif)
+
 - 인접한 2개의 레코드를 비교하여 순서대로 서로 교환
 - 리스트의 전체에 수행, **한 번 스캔 완료시 오른쪽 끝에 가장 큰 레코드**
 - 끝으로 이동한 레코드 제외하고 다시 스캔 반복
@@ -224,6 +229,8 @@ function solution(arr) {
 ```
 
 # 쉘 정렬
+<img width="695" alt="image" src="https://user-images.githubusercontent.com/70371342/228281435-8f5b29a7-d9f2-49f7-bb35-7079b5f99e69.png">
+<img width="659" alt="image" src="https://user-images.githubusercontent.com/70371342/228281666-a35df438-9bd0-4a0a-a769-8d803fce9e3c.png">
 
 - 삽입정렬이 현재 원소를 앞부분에 삽입하기 위해 이웃하는 원소의 숫자끼리 비교하며 한 자리씩 이동하는 단점 보완
 - 리스트를 일정 간격의 부분리스트로 나누고 각각의 부분 리스트를 삽입정렬함, 그리고 간격을 줄여나감
@@ -262,3 +269,5 @@ Shell    :  [10, 20, 30, 40, 50, 60, 70]
 ```
 
 ## javascript
+```javascript
+```
