@@ -1,4 +1,4 @@
-/**
+/** 브루투포스, 함수, 수학
  * 문제 번호: 4673
  * 문제: 셀프 넘버는 1949년 인도 수학자 D.R. Kaprekar가 이름 붙였다. 
  * 양의 정수 n에 대해서 d(n)을 n과 n의 각 자리수를 더하는 함수라고 정의하자. 
@@ -38,41 +38,40 @@
 9993
 
 문제 풀이 : 
-1) 생성자를 구하는 함수를 하나 만든다.
-- 생성자 값 하나만 구하는 함수
-- 자기자신 + 각 자리 숫자의 합
-- N자리수로 이루어진 숫자를 1의 자리를 더하고 1의 자리를 제거하여
-결과적으로 모든 자리수를 다 더할 수 있도록 만든다.
+1) d(n)함수 => 더해주는 함수
+각 자리 10으로 나눠서 몫이랑 나머지 더하는 것 -> 각 자리수 더하는 것
 
-2) 0~10000 범위까지 셀프넘버 배열을 생성하고 true로 초기화
-- 셀프넘버가 아니면 false로 변환
-- true index만 출력
+2) 0~10000 범위까지 셀프넘버 배열 생성하고 true로 초기화
+10000범위까지니까 초반에 범위를 10001로 잡았음 사실 상관 없긴 함 <냐 <=냐의 차이니..
+i+d(i) : 현재수 i와 각 자리 수 더한 값인 d(i)를 더해 새로운 수 생성 
+  => 생성된 수가 범위 내에 있으면, 해당하는 인덱스를 false로 변경
+// 25
+// 25 + d(25)
+// 25 + 2 + 5 = 32 => false
+// 1 + d(1)
+// 1 + 1 => 2 => false
+// 2 + d(2)
+// 2+ 2 => ....4 => false..
+넣었을 때 return 되는 값이면 생성자 중 하나이므로 false, 
+true로 남은 인덱스들은 생성자가 아니라는 뜻이므로, 
+true로 남은 것들만 출력 
  */
 
 function d(n) {
-  let number = n;
   let result = 0;
+  let number = n;
 
-  for (let i = 0; i < String(n).length; i++) {
-    // number를 10으로 나눠가면서 각 자리수를 result에 합한다.
+  while (number) {
     result += number % 10;
-    number = Math.floor(number / 10);
+    number = parseInt(number / 10);
   }
-  // 입력받은 수와 result를 더하여 return
-  return n + result;
+  return result;
 }
 
-const range = 10000;
-// 0~10000 범위까지 셀프넘버 배열을 생성하고 true로 초기화
-let selfNumbers = Array(range + 1).fill(true);
+const range = 10001;
+let selfNumFlagArr = Array.from({ length: range }).fill(true);
 
-for (let i = 0; i <= range; i++) {
-  // 셀프넘버가 아니면 false로 변환
-  selfNumbers[d(i)] = false;
-}
-// true index만 출력
 for (let i = 0; i < range; i++) {
-  if (selfNumbers[i]) {
-    console.log(i);
-  }
+  selfNumFlagArr[i + d(i)] = false;
+  if (selfNumFlagArr[i]) console.log(i);
 }
