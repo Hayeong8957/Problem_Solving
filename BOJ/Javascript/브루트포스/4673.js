@@ -69,7 +69,7 @@ function d(n) {
 }
 
 const range = 10001;
-let selfNumFlagArr = Array.from({ length: range }).fill(true);
+let selfNumFlagArr = Array(range).fill(true);
 
 for (let i = 0; i < range; i++) {
   selfNumFlagArr[i + d(i)] = false;

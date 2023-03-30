@@ -28,44 +28,93 @@
  * .pop() => 배열의 맨 끝에 값을 제거한다.
  * .shift() => 배열의 맨 앞에 값을 제거한다.
  * */
-// const input = [5, 5, 2, 3, 4, 1];
 
-// Javascript 선택정렬 방식
+const input = require('fs')
+  // .readFileSync('/dev/stdin')
+  .readFileSync('/Users/shinhayeong/Problem_Solving/BOJ/Javascript/test.txt')
+  .toString()
+  .trim()
+  .split('\n');
 
-// const input = require("fs")
-//   .readFileSync("/dev/stdin")
-//   .toString()
-//   .trim()
-//   .split("\n");
+let N = Number(input.shift());
+let arr = input.map(Number);
 
-// const N = Number(input[0]);
-// const arr = input.splice(1, N + 1);
+// 선택정렬
+function selectionSort(N, arr) {
+  let answer = arr;
+  for (let i = 0; i < N; i++) {
+    let minIdx = i;
+    for (let j = i + 1; j < N; j++) {
+      if (arr[minIdx] > arr[j]) minIdx = j;
+    }
+    [arr[i], arr[minIdx]] = [arr[minIdx], arr[i]];
+  }
+  return answer.join('\n');
+}
 
-// for (let i = 0; i <= N - 1; i++) {
-//   let minIndex = i;
-//   for (let j = i; j < N; j++) {
-//     if (arr[minIndex] > arr[j]) {
-//       minIndex = j;
-//     }
-//   }
-//   if (minIndex !== i) {
-//     [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
-//   }
-// }
+console.log(selectionSort(N, arr));
 
-// for (let k = 0; k < N; k++) {
-//   console.log(arr[k]);
-// }
+// 삽입정렬
+function insertionSort(N, arr) {
+  let answer = arr;
+  for (let i = 1; i < N; i++) {
+    for (let j = i; j >= 0; j--) {
+      if (arr[j - 1] > arr[j]) {
+        [arr[j - 1], arr[j]] = [arr[j], arr[j - 1]];
+      }
+    }
+  }
+  return answer.join('\n');
+}
+
+console.log(insertionSort(N, arr));
+
+// 버블정렬
+function bubbleSort(N, arr) {
+  let answer = arr;
+  for (let i = 0; i < N; i++) {
+    changed = false;
+    for (let j = 0; j < N - 1 - i; j++) {
+      if (arr[j] > arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+        changed = true;
+      }
+    }
+    if (changed !== true) break;
+  }
+  return answer.join('\n');
+}
+
+console.log(bubbleSort(N, arr));
+
+// 쉘 정렬
+function shellSort(N, arr) {
+  let gap = Math.floor(N / 2);
+  while (gap > 0) {
+    for (let i = gap; i < N; i++) {
+      let temp = arr[i];
+      let j = i;
+      while (j >= gap && arr[j - gap] > temp) {
+        arr[j] = arr[j - gap];
+        j -= gap;
+      }
+      arr[j] = temp;
+    }
+    gap = Math.floor(gap / 2);
+  }
+  return arr.join('\n');
+}
+console.log(shellSort(N, arr));
 
 // 메서드 방식
 
-const fs = require("fs");
-const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
+// const fs = require("fs");
+// const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
-input.shift();
+// input.shift();
 
-input.sort((a, b) => a - b);
+// input.sort((a, b) => a - b);
 
-for (let i = 0; i < input.length; i++) {
-  console.log(input[i]);
-}
+// for (let i = 0; i < input.length; i++) {
+//   console.log(input[i]);
+// }
