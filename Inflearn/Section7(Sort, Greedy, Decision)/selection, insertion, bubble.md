@@ -41,7 +41,7 @@ step7: [10, 20, 30, 40, 50, 60, 70]
 ## javascript
 
 ```javascript
-function solution(arr) {
+function selectionSort(arr) {
   let answer = arr;
   for (let i = 0; i < arr.length; i++) {
     let minIdx = i;
@@ -54,7 +54,7 @@ function solution(arr) {
 }
 
 let arr = [13, 5, 11, 7, 23, 15];
-console.log(solution(arr));
+console.log(selectionSort(arr));
 ```
 
 # 삽입 정렬(insertion sort)
@@ -104,7 +104,7 @@ step7: [10, 20, 30, 40, 50, 60, 70]
 - solution1
 
 ```javascript
-function solution(arr) {
+function insertionSort(arr) {
   let answer = arr;
   for (let i = 1; i < arr.length; i++) {
     for (let j = i; j >= 0; j--) {
@@ -117,13 +117,13 @@ function solution(arr) {
 }
 
 let arr = [11, 7, 5, 6, 10, 9];
-console.log(solution(arr));
+console.log(insertionSort(arr));
 ```
 
 - solution2
 
 ```javascript
-function solution(arr) {
+function insertionSort(arr) {
   let answer = arr;
   for (let i = 0; i < arr.length; i++) {
     let tmp = arr[i],
@@ -185,7 +185,7 @@ step5 : [10, 20, 30, 40, 50, 60, 70]
 - solution 1
 
 ```javascript
-function solution(arr) {
+function bubbleSort(arr) {
   let answer = arr;
   for (let i = 0; i < arr.length; i++) {
     changed = false;
@@ -201,7 +201,7 @@ function solution(arr) {
 }
 
 let arr = [13, 5, 11, 7, 23, 15];
-console.log(solution(arr2));
+console.log(bubbleSort(arr2));
 ```
 
 1. outer ;oop는 i가 0부터 arr.length까지 돌림
@@ -216,7 +216,7 @@ console.log(solution(arr2));
 - solution 2
 
 ```javascript
-function solution(arr) {
+function bubbleSort(arr) {
   let answer = arr;
   for (let i = 0; i < arr.length - 1; i++) {
     for (let j = 0; j < arr.length - i - 1; j++) {
