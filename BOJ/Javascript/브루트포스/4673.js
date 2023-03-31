@@ -61,7 +61,7 @@ function d(n) {
   let result = 0;
   let number = n;
 
-  while (number) {
+  while (number > 0) {
     result += number % 10;
     number = parseInt(number / 10);
   }
