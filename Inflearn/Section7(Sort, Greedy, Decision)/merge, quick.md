@@ -95,6 +95,7 @@ quickSort([100, -3, 2, 4, 6, 9, 1, 2, 5, 3, 23]);
 ```
 
 # 병합 정렬(Merge Sort)
+<img width="617" alt="image" src="https://user-images.githubusercontent.com/70371342/229570714-9de15103-7a1f-43f1-8e5e-505caa41d1b8.png">
 
 병합 정렬은 배열을 작은 단위로 쪼개어(분할) 정렬한 결과(정렬)를 합치면서(합병) 전체를 정렬하는 **분할 정복** 방식이다.
 
