@@ -1,6 +1,7 @@
 > 분할 정복(divide and conquer) 방법: 문제를 보다 작은 2개의 문제로 분리, 각 문제 해결 후, 결과를 모아 원래의 문제를 해결
 
 # 퀵 정렬(Quick Sort)
+![image](https://user-images.githubusercontent.com/70371342/229670028-5b4812bb-51ba-4693-8459-2b9157ccdb9f.png)
 
 **분할 정복** 방법을 통한 정렬로, 하나의 **pivot(축)**을 정해서 이 pivot보다 작은 값은 왼쪽에, 큰 값은 오른쪽에 위치시키는 방법이다.
 데이터를 분할하여 배열에 0개 또는 1개의 항목이 남을 때까지 분할하여 개별적으로 정렬되는 방식이다.
@@ -99,7 +100,7 @@ quickSort([4, 8, 2, 1, 5, 7, 6, 3]);
 ```
 
 # 병합 정렬(Merge Sort)
-<img width="617" alt="image" src="https://user-images.githubusercontent.com/70371342/229570714-9de15103-7a1f-43f1-8e5e-505caa41d1b8.png">
+![image](https://user-images.githubusercontent.com/70371342/229670172-dd59f874-0b61-4585-8baf-d9ff2544c7f9.png)
 
 병합 정렬은 배열을 작은 단위로 쪼개어(분할) 정렬한 결과(정렬)를 합치면서(합병) 전체를 정렬하는 **분할 정복** 방식이다.
 
