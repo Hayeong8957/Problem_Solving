@@ -3,6 +3,7 @@
 # 퀵 정렬(Quick Sort)
 
 **분할 정복** 방법을 통한 정렬로, 하나의 **pivot(축)**을 정해서 이 pivot보다 작은 값은 왼쪽에, 큰 값은 오른쪽에 위치시키는 방법이다.
+데이터를 분할하여 배열에 0개 또는 1개의 항목이 남을 때까지 분할하여 개별적으로 정렬되는 방식이다.
 
 1. 왼쪽과 오른쪽에 해당하는 원소들에 대해 두 배열로 나눈다.
 2. 분할된 두 개의 작은 배열에 대해 재귀(Recursion)적으로 이 과정을 반복한다.
@@ -61,6 +62,8 @@ def partition(a, left, right) :
 ### javascript
 
 ```javascript
+// 요소를 피벗 포인트로 지정하여 배열 속 요소를 재배치하는 함수를 작성
+// 피벗보다 작은 값은 모두 왼쪽으로 이동하며 피벗보다 큰 값은 모두 오른쪽으로 이동
 function pivot(arr, start = 0, end = arr.length - 1) {
   const swap = (arr, idx1, idx2) => {
     [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
@@ -73,9 +76,10 @@ function pivot(arr, start = 0, end = arr.length - 1) {
     if (pivot > arr[i]) {
       swapIdx++;
       swap(arr, swapIdx, i);
+      // console.log(arr);
     }
   }
-
+  // 시작 요소를 피벗 인덱스와 바꾼
   swap(arr, start, swapIdx);
   return swapIdx;
 }
@@ -91,7 +95,7 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
   return arr;
 }
 
-quickSort([100, -3, 2, 4, 6, 9, 1, 2, 5, 3, 23]);
+quickSort([4, 8, 2, 1, 5, 7, 6, 3]);
 ```
 
 # 병합 정렬(Merge Sort)
