@@ -42,24 +42,12 @@ let splitMinus = require('fs')
   .toString()
   .split('-');
 
-let answer = 0;
+let plusSplitPlus = splitMinus.map((splitMinusStr) => {
+  return splitMinusStr
+    .split('+')
+    .map(Number)
+    .reduce((a, b) => a + b, 0);
+});
 
-function mySum(splitMinus) {
-  // console.log('현재 들어온', splitMinus);
-  let sum = 0;
-  splitPlus = splitMinus.split('+');
-  for (let i = 0; i < splitPlus.length; i++) {
-    sum += parseInt(splitPlus[i]);
-  }
-  // console.log('계산하고 나갈', sum);
-  return sum;
-}
-for (let i = 0; i < splitMinus.length; i++) {
-  let temp = mySum(splitMinus[i]);
-  if (i === 0) {
-    answer += temp;
-  } else {
-    answer -= temp;
-  }
-}
-console.log(answer);
+let [first, ...rest] = plusSplitPlus;
+console.log(first - rest.reduce((a, b) => a + b, 0));
