@@ -49,4 +49,4 @@ const N_list = new Set(names.slice(0, N).sort());
 const M_list = new Set(names.slice(N).sort());
 const intersection = new Set([...N_list].filter((x) => M_list.has(x)));
 console.log(intersection.size);
-console.log(Array.from(intersection).join('\n'));
+console.log([...intersection].join('\n'));
