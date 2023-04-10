@@ -23,7 +23,9 @@
  * const temp = input.map(Number).sort((a, b) => a - b);
  * console.log(temp[0] * parseInt(N));
  *
- *
+ * 2번째 풀이: 최대 중량을 가진 로프부터 하나씩 추가하면서 들 수 있는 최대 중량을 구함
+ * 이때 들 수 있는 최대 중량은 사용한 로프 중 가장 작은 중량과 사용한 로프의 개수를 곱한 값
+ * 모든 경우의 최대 중량을 비교하여 가장 큰 값을 출력
  */
 
 let [N, ...input] = require('fs')
