@@ -47,6 +47,6 @@ let [NM, ...names] = require('fs')
 let [N, M] = NM.split(' ').map(Number);
 const N_list = new Set(names.slice(0, N).sort());
 const M_list = new Set(names.slice(N).sort());
-const intersection = new Set([...N_list].filter((x) => M_list.has(x)));
-console.log(intersection.size);
-console.log([...intersection].join('\n'));
+const intersection = [...N_list].filter((x) => M_list.has(x));
+console.log(intersection.length);
+console.log(intersection.join('\n'));
