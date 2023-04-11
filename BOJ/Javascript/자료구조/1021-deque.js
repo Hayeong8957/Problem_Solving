@@ -39,7 +39,7 @@
 
 ===> 총 2번(5회), 3번(3회) = 8회
 
-- 현재 뽑아내려는 게 큐 왼쪽에 가까운지 뒤쪽에 가까운지 판별
+- 현재 뽑아내려는 게 큐 왼쪽에 가까운지 뒤쪽에 가까운지 판별 => 중간 이하면 왼쪽에 가깝고, 이상이면 오른쪽에 가까움
 - Array.from({length: N}, (x) => x+1)
 
  */
@@ -49,37 +49,26 @@ let [NM, temp] = require('fs')
   .toString()
   .split('\n');
 let [N, M] = NM.split(' ').map(Number);
-let targetNums = temp.split(' ').map(Number);
-let arr = Array.from({ length: N }, (_, x) => x + 1);
+let targetNums = temp.split(' ').map(Number); // [2, 9, 5]
+let arr = Array.from({ length: N }, (_, x) => x + 1); // [1, 2, 3, ..., 9, 10]
 let cnt = 0;
 
 for (let i = 0; i < M; i++) {
   let target = targetNums[i];
-  if (targetNums[i] === arr[0]) {
-    arr.shift();
-  } else {
-    let targetIdx = arr.indexOf(target);
-    let mid = arr.length / 2;
 
-    if (targetIdx <= mid) {
-      for (let j = 0; j < targetIdx; j++) {
-        let tmp = arr.pop();
-        arr.push(tmp);
-        cnt++;
-      }
+  while (true) {
+    if (arr[0] === target) {
+      arr.shift();
+      break;
     } else {
-      for (let k = 0; k < arr.length - targetIdx; k++) {
-        let tmp = arr.pop();
-        arr.unshift(tmp);
+      if (arr.indexOf(target) <= Math.floor(arr.length / 2)) {
+        arr.push(arr.shift());
+        cnt++;
+      } else {
+        arr.unshift(arr.pop());
         cnt++;
       }
     }
-    arr.shift();
   }
 }
-
-// console.log(N);
-// console.log(M);
-// console.log(target);
-// console.log(arr);
 console.log(cnt);
