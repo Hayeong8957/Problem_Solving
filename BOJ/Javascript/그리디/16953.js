@@ -38,14 +38,17 @@ while (true) {
     break;
   } else if (Number(B) < Number(A)) {
     console.log(-1);
+    break;
   }
+
   if (B % 2 === 0) {
     B = String(B / 2);
-  } else if (B % 2 === 1) {
+  } else {
     if (B[B.length - 1] === '1') {
       B = B.slice(0, B.length - 1);
     } else {
       console.log(-1);
+      break;
     }
   }
   cnt++;
