@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>신하영계산기</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+      table {
+        background-color: white;
+        border-collapse: collapse;
+      }
+      td {
+        padding: 5px 10px;
+        text-align: center;
+      }
+      input {
+        text-align: right;
+        border: none;
+      }
+      .input {
+        background-color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <table border="1">
+      <tr id="input">
+        <td colspan="4">
+          <input type="text" id="display" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="1">C</td>
+        <td colspan="1">+/-</td>
+        <td colspan="1">%</td>
+        <td>/</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>*</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>+</td>
+      </tr>
+      <tr>
+        <td colspan="2">0</td>
+        <td>.</td>
+        <td>=</td>
+      </tr>
+    </table>
+  </body>
+</html>
