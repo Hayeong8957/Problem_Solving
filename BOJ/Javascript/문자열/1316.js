@@ -79,3 +79,45 @@ for (let i = 1; i <= input[0]; i++) {
 }
 
 console.log(result);
+
+
+// 다시 풀었을 때 0501
+// 백준 1316 그룹 단어 체커
+// 이미 나온 문자가 연속해서 나오는 것이 아니라 
+// 다른 문자가 나온 뒤에 또 나오게 된다면
+// 그건 그룹 단어가 아니다.
+// "/dev/stdin"
+
+// const input = require("fs").readFileSync("test2.txt").toString().split('\n')
+
+function solution(input) {
+  const [N, ...arr] = input;
+  let cnt = N;
+  
+
+  arr.forEach(str => {
+    const stack = [];
+    const map = new Map();
+
+    for(let i = 0; i < str.length; i++) {
+      if(str[i] === stack[stack.length - 1]) continue;
+      stack.push(str[i])
+    }
+    console.log('stack >> ', stack)
+    for(let j = 0; j < stack.length; j++){
+      map.set(stack[j], (map.get(stack[j]) || 0) + 1);
+      for(const [_, value] of map) {
+        if(value >= 2) {
+          cnt--;
+          return;
+        } 
+      }
+    }
+    console.log('map >> ', map)
+  });
+
+  return cnt;
+}
+
+console.log(solution(input));
+
