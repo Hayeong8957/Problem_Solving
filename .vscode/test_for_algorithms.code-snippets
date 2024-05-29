@@ -1,12 +1,22 @@
 {
-	"auto input build": {
+	"python auto input": {
 		"scope": "python",
-		"prefix": "auto",
+		"prefix": "python auto",
 		"body": [
 			"import sys",
 			"path = __file__[0:-2] + 'txt'",
 			"sys.stdin = open(path, 'r')",
 			"input = sys.stdin.readline()",
+		],
+		"description": "input generator for Baekjoon"
+	},
+	"js auto input": {
+		"scope": "javascript",
+		"prefix": "js auto",
+		"body": [
+			"const fs = require('fs');",
+			"const filePath = process.platform === 'linux' ? '/dev/stdin' : '/Users/shinhayeong/Desktop/Problem_Solving/test.txt';",
+			"const input = fs.readFileSync(filePath).toString().trim().split(' ');"
 		],
 		"description": "input generator for Baekjoon"
 	}
