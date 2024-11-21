@@ -16,15 +16,19 @@ let cnt = 0;
 let answer = [];
 
 function recursion(start) {
+  console.log(`recursion(${start})`);
   let sum = answer.reduce((acc, cur) => acc + cur, 0);
   if (sum === S && answer.length > 0) {
     cnt++;
+    console.log('cnt >> ', cnt);
   }
 
   for (let i = start; i < N; i++) {
     answer.push(arr[i]);
+    console.log('answer 1 >> ', answer);
     recursion(i + 1);
     answer.pop();
+    console.log('answer 2 >> ', answer);
   }
 }
 
