@@ -1,23 +1,34 @@
 {
-	"python auto input": {
-		"scope": "python",
-		"prefix": "python auto",
-		"body": [
-			"import sys",
-			"path = __file__[0:-2] + 'txt'",
-			"sys.stdin = open(path, 'r')",
-			"input = sys.stdin.readline()",
-		],
-		"description": "input generator for Baekjoon"
-	},
-	"js auto input": {
-		"scope": "javascript",
-		"prefix": "js auto",
-		"body": [
-			"const fs = require('fs');",
-			"const filePath = process.platform === 'linux' ? '/dev/stdin' : '/Users/shinhayeong/Desktop/Problem_Solving/test.txt';",
-			"const input = fs.readFileSync(filePath).toString().trim().split(' ');"
-		],
-		"description": "input generator for Baekjoon"
-	}
+  "python auto input1": {
+    "scope": "python",
+    "prefix": "python auto1",
+    "body": [
+      "import sys",
+      "path = __file__[0:-2] + 'txt'",
+      "sys.stdin = open(path, 'r')",
+      "input = sys.stdin.readline()"
+    ],
+    "description": "input generator for Baekjoon"
+  },
+  "python auto input2": {
+    "scope": "python",
+    "prefix": "python auto2",
+    "body": [
+      "# 입력 처리",
+      "import sys",
+      "input = sys.stdin.read if sys.platform == 'linux' else open('/Users/shinhayeong/Desktop/Problem_Solving/test.txt').read",
+      "lines = input().strip().split('\n')"
+    ],
+    "description": "input generator for Baekjoon"
+  },
+  "js auto input": {
+    "scope": "javascript",
+    "prefix": "js auto",
+    "body": [
+      "const fs = require('fs');",
+      "const filePath = process.platform === 'linux' ? '/dev/stdin' : '/Users/shinhayeong/Desktop/Problem_Solving/test.txt';",
+      "const input = fs.readFileSync(filePath).toString().trim().split(' ');"
+    ],
+    "description": "input generator for Baekjoon"
+  }
 }
