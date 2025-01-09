@@ -1,26 +1,38 @@
+// 순간이동 앞쪽 삽입하여 우선 처리
+// 걷는 경우 뒤쪽 삽입
 const fs = require('fs');
-// const input = fs.readFileSync('/dev/stdin').toString().trim().split(' ').map(Number);
-const input = '5 17'.split(' ').map(Number); // 테스트 입력
+const filePath =
+  process.platform === 'linux'
+    ? '/dev/stdin'
+    : '/Users/shinhayeong/Desktop/Problem_Solving/test.txt';
+const input = fs
+  .readFileSync(filePath)
+  .toString()
+  .trim()
+  .split(' ')
+  .map(Number);
 const [N, K] = input;
 
-function bfs(start, target) {
-  const MAX = 100000; // 최대 위치 값
-  const visited = Array(MAX + 1).fill(false);
-  const queue = [[start, 0]]; // [현재 위치, 소요 시간]
-  visited[start] = true;
+const MAX = 100000;
+const visited = Array.from({ length: MAX }, () => false);
+function bfs(수빈, 동생) {
+  const queue = [[수빈, 0]];
+  visited[수빈] = true;
 
   while (queue.length > 0) {
-    const [current, time] = queue.shift();
+    const [current수빈, time] = queue.shift();
 
-    // 동생 위치에 도달하면 소요 시간 반환
-    if (current === target) return time;
+    if (current수빈 === 동생) return time;
 
-    // 다음 가능한 위치 탐색
-    const nextPositions = [current - 1, current + 1, current * 2];
-    for (const next of nextPositions) {
+    if (current수빈 * 2 <= MAX && !visited[current수빈 * 2]) {
+      visited[current수빈 * 2] = true;
+      queue.unshift([current수빈 * 2, time]);
+    }
+
+    for (const next of [current수빈 - 1, current수빈 + 1]) {
       if (next >= 0 && next <= MAX && !visited[next]) {
         visited[next] = true;
-        queue.push([next, next === current * 2 ? time : time + 1]); // 순간이동은 0초, 걷는 건 1초
+        queue.push([next, time + 1]);
       }
     }
   }
