@@ -11,16 +11,26 @@ const input = fs
   .map((el) => el.split(' ').map(Number));
 const [N, M] = input.shift();
 const 알고싶은노드 = input.splice(-M);
+
+// 그래프 생성, 간선 데이터를 이용해 가중치 포함한 인접 리스트 생성 start
+// 그래프의 index -> node
 const graph = [...Array(N + 1)].map(() => []);
+
+console.log('graph1 > ', graph);
 
 input.forEach(([from, to, distance]) => {
   graph[from].push([to, distance]);
   graph[to].push([from, distance]);
 });
+// 그래프 생성 End
+console.log('graph1 > ', graph);
 
+// 출발 노드에서 목표 노드까지 최단 거리 누적 탐색
+// queue에 [다음 노드, 누적 거리]로 데이터 추가
 function bfs(start, end) {
   const queue = [[start, 0]];
   const visited = Array(N + 1).fill(false);
+  console.log('visited > ', visited);
 
   while (queue.length > 0) {
     const [curNode, distanceSum] = queue.shift();
